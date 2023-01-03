@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/cvera08/blockchain-automation#readme",
   "devDependencies": {
-    "cypress": "^12.0.2"
+    "cypress": "^12.2.0"
   }
 }
