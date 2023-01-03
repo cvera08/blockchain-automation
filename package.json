@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cvera08/blockchain-automation/issues"
   },
-  "homepage": "https://github.com/cvera08/blockchain-automation#readme"
+  "homepage": "https://github.com/cvera08/blockchain-automation#readme",
+  "devDependencies": {
+    "cypress": "^12.0.2"
+  }
 }
