@@ -4,7 +4,7 @@ import { deployAndRunTransactions } from "../support/selectors/remix/icon-panel"
 
 describe('remix ide spec', () => {
   it('deploy & run transactions', () => {
-    cy.visit('https://remix.ethereum.org/')
+    cy.visit('/')
 
     modalSelectors.helpUsToImprove().click()
     sidePanel.fileExplorerTitle().contains('File explorer').and('be.visible') //or .should('be.visible').and('have.text', 'File explorer')
