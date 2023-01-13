@@ -20,9 +20,25 @@ describe('remix ide spec', () => {
     sidePanel.deployRunTransactionsTitle().should('be.visible').and('have.text', 'Deploy & run transactions')
   })
 
-  it('first smart contract - wip', () => {
+  it('delete first contract', () => {
     fileExplorer().click()
     sidePanel.validateFileExplorerTitle()
+    cy.wait(4000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
+    sidePanel.defaultWorkspaceDdl().should('be.visible')
+    sidePanel.contractsFolder().click({ force: true })
+    sidePanel.firstContract().then($value => {
+      cy.wrap($value.text()).as('firstContractName') //Grab the name of the current contract
+    })
+    sidePanel.firstContract().rightclick({ force: true })
+    sidePanel.menuItemDelete().click()
+    modalSelectors.deleteItemOK().click({ force: true })
+    cy.get('@firstContractName').then((firstContract) => {
+      sidePanel.firstContract()
+        .invoke('text').should("not.eq", firstContract) //Validate first contract name is not visible anymore / does not exist 
+    })
+  })
+
+  it('first smart contract - wip', () => {
     // TODO: finish this test
   })
 })
