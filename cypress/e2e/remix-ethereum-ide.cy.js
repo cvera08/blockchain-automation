@@ -25,14 +25,17 @@ describe('remix ide spec', () => {
     sidePanel.validateFileExplorerTitle()
     cy.wait(4000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
     cy.findByRole('button', {name: /default_workspace/i});
-    //cy.findByRole('button', {name: /localhost/i}).should("not.be.visible")
     cy.get('ul[data-id="treeViewUltreeViewMenu"] span[title="contracts"]', {timeout: 10000}).click({force: true})
-    //const firstContract = cy.get(....) //TODO: take the name of the contract
+    cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap').then($value => {
+      cy.wrap($value.text()).as('firstContractName') //Grab the name of the current contract
+    })
     cy.get('ul[data-id="treeViewUltreeViewcontracts"] li').first().rightclick({force: true})
     cy.get('li[id="menuitemdelete"]').click()
-    //cy.wait(1000) //if we click so quick the real deletion is never performed
     cy.get('[data-id="fileSystemModalDialogContainer-react"] > .modal-dialog .modal-ok').click({force: true})
-    //TODO: validate firstContract (name) is not visible anymore / does not exist
+    cy.get('@firstContractName').then((firstContract) => {
+      cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap')
+      .invoke('text').should("not.eq", firstContract) //Validate first contract name is not visible anymore / does not exist 
+    })
   })
 
   it('first smart contract - wip', () => {
