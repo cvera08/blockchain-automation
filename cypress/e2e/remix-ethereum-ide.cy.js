@@ -24,17 +24,17 @@ describe('remix ide spec', () => {
     fileExplorer().click()
     sidePanel.validateFileExplorerTitle()
     cy.wait(4000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
-    cy.findByRole('button', {name: /default_workspace/i});
-    cy.get('ul[data-id="treeViewUltreeViewMenu"] span[title="contracts"]', {timeout: 10000}).click({force: true})
-    cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap').then($value => {
+    sidePanel.defaultWorkspaceDdl().should('be.visible')
+    sidePanel.contractsFolder().click({ force: true })
+    sidePanel.firstContract().then($value => {
       cy.wrap($value.text()).as('firstContractName') //Grab the name of the current contract
     })
-    cy.get('ul[data-id="treeViewUltreeViewcontracts"] li').first().rightclick({force: true})
-    cy.get('li[id="menuitemdelete"]').click()
-    cy.get('[data-id="fileSystemModalDialogContainer-react"] > .modal-dialog .modal-ok').click({force: true})
+    sidePanel.firstContract().rightclick({ force: true })
+    sidePanel.menuItemDelete().click()
+    modalSelectors.deleteItemOK().click({ force: true })
     cy.get('@firstContractName').then((firstContract) => {
-      cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap')
-      .invoke('text').should("not.eq", firstContract) //Validate first contract name is not visible anymore / does not exist 
+      sidePanel.firstContract()
+        .invoke('text').should("not.eq", firstContract) //Validate first contract name is not visible anymore / does not exist 
     })
   })
 
