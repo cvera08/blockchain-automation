@@ -45,7 +45,7 @@ describe('remix ide spec', () => {
   })
 
   it('add new smart contract', () => {
-    const contractName = `X_atc_${Cypress._.random(0, 1e6)}.sol`
+    const contractName = `X_ATC_${Cypress._.random(0, 1e6)}.sol`
 
     sidePanel.contractList().its('length').then((number) => {
       cy.wrap(number).as('contractsAmount')
@@ -56,5 +56,21 @@ describe('remix ide spec', () => {
       sidePanel.contractList().its('length').should('eq', contractsAmount + 1)
     })
     sidePanel.contractListNames().contains(contractName) //validate the new contract name is present
+  })
+
+  it.only('create hot fudge sauce contract', () => {
+    //sidePanel.createNewFile().click().type(`X_ATC_HotFudgeSauce{enter}`)  //i won't create a new one, i will use the latest one instead (or fresh created one)
+    cy.wait(10000)
+    sidePanel.contractsFolder().click({ force: true })
+    //cy.get('li[data-id="treeViewLitreeViewItemcontracts"] span:contains("X_atc_876293.sol")').click({ multiple: true })
+    //cy.get('ul[data-id="treeViewUltreeViewcontracts"] li span.text-nowrap:contains("X_atc_876293.sol")').click()
+    //sidePanel.contractListNames().contains("X_atc_876293.sol").click()
+    sidePanel.contractListNames().last()
+      .click()
+      .invoke('text').then(lastContractName => cy.wrap(lastContractName).as('lastContractName'))
+
+    cy.get('#react-tabs-2 > .nav-item > .title-tabs').invoke('text').then((contractNameTab) => { //validate the last contract was opened in a new tab
+      cy.get('@lastContractName').should('eq', contractNameTab)
+    })
   })
 })
