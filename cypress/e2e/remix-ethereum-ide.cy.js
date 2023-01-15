@@ -19,7 +19,7 @@ describe('remix ide spec', () => {
   even when it is a well-known bad practice (it generates dependencies instead of atomic ATCs).
   This is because the online remix IDE is slow in its start/refresh and even the application is error-prone in several launches. 
   In this way, the whole execution is much faster than reloading each time. */
-  it('deploy & run transactions', () => {
+  it('deploy & run transactions menu', () => {
     sidePanel.validateFileExplorerTitle()
 
     deployAndRunTransactions().click() //if "Help us to improve Remix IDE" modal is still displayed you need to use "..udapp/i}, {timeout: 30000}).click({force: true})"
@@ -59,18 +59,33 @@ describe('remix ide spec', () => {
   })
 
   it.only('create hot fudge sauce contract', () => {
-    //sidePanel.createNewFile().click().type(`X_ATC_HotFudgeSauce{enter}`)  //i won't create a new one, i will use the latest one instead (or fresh created one)
     cy.wait(10000)
     sidePanel.contractsFolder().click({ force: true })
-    //cy.get('li[data-id="treeViewLitreeViewItemcontracts"] span:contains("X_atc_876293.sol")').click({ multiple: true })
-    //cy.get('ul[data-id="treeViewUltreeViewcontracts"] li span.text-nowrap:contains("X_atc_876293.sol")').click()
-    //sidePanel.contractListNames().contains("X_atc_876293.sol").click()
     sidePanel.contractListNames().last()
       .click()
       .invoke('text').then(lastContractName => cy.wrap(lastContractName).as('lastContractName'))
 
-    cy.get('#react-tabs-2 > .nav-item > .title-tabs').invoke('text').then((contractNameTab) => { //validate the last contract was opened in a new tab
+    cy.get('#react-tabs-2 > .nav-item > .title-tabs').invoke('text').then((contractNameTab) => { //validate that the last contract was opened in a new tab
       cy.get('@lastContractName').should('eq', contractNameTab)
     })
+    cy.get('div.view-line').type(`
+    // SPDX-License-Identifier: MIT
+    pragma solidity ^0.8.8.0;
+    contract HotFudgeSauce {
+        uint public qtyCups;
+        // Get the current hot fudge quantity
+        function get() public view returns (uint) {
+            return qtyCups;
+        }
+        // Increment hot fudge quantity by 1
+        function increment() public {
+            qtyCups += 1; // same as  qtyCups = qtyCups + 1;
+        }
+        // Function to decrement count by 1
+        function decrement() public {
+            qtyCups -= 1; // same as  qtyCups = qtyCups - 1;
+        }
+    }`) //not delay needed
   })
 })
+
