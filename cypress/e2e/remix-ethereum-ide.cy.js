@@ -38,7 +38,21 @@ describe('remix ide spec', () => {
     })
   })
 
-  it('first smart contract - wip', () => {
-    // TODO: finish this test
+  it.only('add new smart contract', () => {
+    //fileExplorer().click()
+    //sidePanel.validateFileExplorerTitle()
+    cy.wait(10000)
+    sidePanel.contractsFolder().click({ force: true })
+    cy.get('ul[data-id="treeViewUltreeViewcontracts"] li').its('length').then((number) => {
+      cy.wrap(number).as('contractsAmount')
+    })
+    cy.get('span[id="createNewFile"]').click().type('hello.sol{enter}')
+    //cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:nth-of-type(4)').type('hello.sol{enter}')
+
+    cy.get('@contractsAmount').then((contractsAmount) => { //validate there is one new element in the contract list
+      cy.get('ul[data-id="treeViewUltreeViewcontracts"] li').its('length').should('be.equal', contractsAmount + 1)
+    })
+
+    //TODO: validate the new contract name is present
   })
 })
