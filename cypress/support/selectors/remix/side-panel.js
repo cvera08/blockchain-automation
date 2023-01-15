@@ -9,6 +9,12 @@ export const defaultWorkspaceDdl = () => cy.findByRole('button', { name: /defaul
 
 export const contractsFolder = () => cy.get('ul[data-id="treeViewUltreeViewMenu"] span[title="contracts"]', { timeout: 10000 })
 
-export const firstContract = () => cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap')
+export const contractList = () => cy.get('ul[data-id="treeViewUltreeViewcontracts"] li')
+
+export const contractListNames = () => cy.get('ul[data-id="treeViewUltreeViewcontracts"] li span.text-nowrap')
+
+export const firstContractName = () => cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap')
+
+export const createNewFile = () => cy.get('span[id="createNewFile"]')
 
 export const menuItemDelete = () => cy.get('li[id="menuitemdelete"]')
