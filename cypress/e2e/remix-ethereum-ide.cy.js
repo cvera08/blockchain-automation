@@ -40,7 +40,7 @@ describe('remix ide spec', () => {
     modalSelectors.deleteItemOK().click({ force: true })
     cy.get('@firstContractName').then((firstContract) => {
       sidePanel.firstContractName()
-        .invoke('text').should("not.eq", firstContract) //Validate first contract name is not visible anymore / does not exist 
+        .invoke('text').should('not.eq', firstContract) //Validate first contract name is not visible anymore / does not exist 
     })
   })
 
@@ -68,24 +68,35 @@ describe('remix ide spec', () => {
     cy.get('#react-tabs-2 > .nav-item > .title-tabs').invoke('text').then((contractNameTab) => { //validate that the last contract was opened in a new tab
       cy.get('@lastContractName').should('eq', contractNameTab)
     })
-    cy.get('div.view-line').type(`
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.8.0;
-    contract HotFudgeSauce {
-        uint public qtyCups;
-        // Get the current hot fudge quantity
-        function get() public view returns (uint) {
-            return qtyCups;
-        }
-        // Increment hot fudge quantity by 1
-        function increment() public {
-            qtyCups += 1; // same as  qtyCups = qtyCups + 1;
-        }
-        // Function to decrement count by 1
-        function decrement() public {
-            qtyCups -= 1; // same as  qtyCups = qtyCups - 1;
-        }
-    }`) //not delay needed
+
+    cy.readFile('cypress/support/smart-contracts/HotFudgeSauce.sol').then((contractCode) => { //code the contract
+      cy.get('div.view-line').type(contractCode)
+    })
+    cy.pause()
+
+    //*** validate the contract was written: *** 
+    //cy.get('div.view-line').should('not.be.empty') //validate the contract was written
+    //cy.get('div.view-line').should('not.have.value', '') //validate the contract was written
+    //cy.get('div.view-line > span > span').first().should('have.value', '// SPDX-License-Identifier: MIT')
+    cy.get('div.view-line > span > span').first().invoke('text').then(cy.log)
+        //.should('have.value', '// SPDX-License-Identifier: MIT')
+    cy.get('div.view-line').first().invoke('text').then(cy.log)
+    //cy.get('div.view-line').first().invoke('text').should('have.value', `// SPDX-License-Identifier: MIT`)
+    //cy.get('div.view-line').first().invoke('text').should('eq', `SPDX-License-Identifier`)
+    //cy.get('div.view-line').first().invoke('text').to.contain('SPDX-License-Identifier')
+    //cy.get('div.view-line').first().invoke('text').contains('SPDX-License-Identifier').should('be.visible')
+    cy.get('div.view-line').contains('SPDX-License-Identifier').should('be.visible') //validate the contract was written / is not empty
+
+    //*** validate the contract is not empty *** 
+    cy.pause()
+    cy.log('2>>>')
+    //cy.get('div.view-line').first().invoke('text').should('not.have.value', '') //it fails when there is text in the line/input
+    cy.get('div.view-line').first().invoke('text').should('not.to.be.empty')
+    cy.pause()
+    cy.log('3>>>')
+    cy.get('div.view-line').first().invoke('text').should(($line) => {
+      expect($line).not.to.be.empty
+    })
   })
 })
 
