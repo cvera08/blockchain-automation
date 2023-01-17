@@ -1,5 +1,5 @@
 import * as modalSelectors from "../support/selectors/remix/modals"
-import { deployAndRunTransactions, fileExplorer } from "../support/selectors/remix/icon-panel"
+import { deployAndRunTransactions, fileExplorer, solidityCompiler } from "../support/selectors/remix/icon-panel"
 import * as sidePanel from "../support/selectors/remix/side-panel"
 import * as mainContractsView from "../support/selectors/remix/main-contracts-view"
 
@@ -70,6 +70,30 @@ describe('remix ide spec', () => {
     mainContractsView.editorView().first().invoke('text').should('not.to.be.empty') //validate the contract is not empty
 
     mainContractsView.editorView().contains('SPDX-License-Identifier').should('be.visible') //validate the contract was written
+  })
+
+  it.only('compile contract', () => {
+    cy.pause()
+    solidityCompiler().click()
+    sidePanel.versionSelectorDdl().select('soljson-v0.8.8+commit.dddeac2f.js')
+    cy.wait(9000) //hardcoded sleep since the button change its visibility/active for a while
+    sidePanel.compileBtn().should('be.visible').click()
+    //validate the contract is deployed
+    cy.get('#compiledContracts').invoke('text').then(cy.log)
+    cy.log(">>>1")
+    cy.get('#compiledContracts').invoke('text').then(($text) => { cy.log($text) })
+    cy.get('#compiledContracts').should('include.text', 'HotFudgeSauce')
+    cy.log('📕🤖📕: [ >>>0 ]()')
+    cy.get('#compiledContracts').should('contain', 'HotFudgeSauce')
+    //cy.get('#compiledContracts').should('have.text', 'HotFudgeSauce')
+    cy.get('#compiledContracts').should('exist')
+      .and('be.visible')
+    //cy.get('#compiledContracts').invoke('text').should('include.text', 'HotFudgeSauce') //You attempted to make a chai-jQuery assertion on an object that is neither a DOM object or a jQuery object.
+    //cy.log(cy.get('#compiledContracts').invoke('text')) //{specwindow: <window>, chainerid: ch-https://remix.ethereum.org-112}
+    //cy.get('#compiledContracts').contains('HotFudgeSauce').should('be.visible')
+    /* cy.get('#compiledContracts option').contains('HotFudgeSauce').should('be.visible')
+    cy.log(">>>2")
+    cy.get('#compiledContracts').contains('HotFudgeSauce').should('exist') */
   })
 })
 

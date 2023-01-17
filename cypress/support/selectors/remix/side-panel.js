@@ -18,3 +18,7 @@ export const firstContractName = () => cy.get('ul[data-id="treeViewUltreeViewcon
 export const createNewFile = () => cy.get('span[id="createNewFile"]')
 
 export const menuItemDelete = () => cy.get('li[id="menuitemdelete"]')
+
+export const versionSelectorDdl = () => cy.get('#versionSelector')
+
+export const compileBtn = () => cy.get('#compileBtn', { timeout: 10000 })
