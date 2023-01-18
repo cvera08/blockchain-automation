@@ -21,4 +21,6 @@ export const menuItemDelete = () => cy.get('li[id="menuitemdelete"]')
 
 export const versionSelectorDdl = () => cy.get('#versionSelector')
 
-export const compileBtn = () => cy.get('#compileBtn', { timeout: 10000 })
+export const compileBtn = () => cy.get('#compileBtn', { timeout: 15000 })
+
+export const compiledContracts = () => cy.get('#compiledContracts')

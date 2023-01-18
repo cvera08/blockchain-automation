@@ -46,7 +46,7 @@ describe('remix ide spec', () => {
     const contractName = `X_ATC_${Cypress._.random(0, 1e6)}.sol`
 
     sidePanel.contractList().its('length').then((number) => { cy.wrap(number).as('contractsAmount') })
-    sidePanel.createNewFile().click().type(`${contractName}{enter}`)
+    sidePanel.createNewFile().click().type(`${contractName}{enter}`, { delay: 100 })
 
     cy.get('@contractsAmount').then((contractsAmount) => { //validate there is one new element in the contract list
       sidePanel.contractList().its('length').should('eq', contractsAmount + 1)
@@ -56,7 +56,7 @@ describe('remix ide spec', () => {
 
   it('create hot fudge sauce contract', () => {
     sidePanel.contractListNames().last()
-      .click()
+      .click({ force: true }) //overlay from icon panel
       .invoke('text').then(lastContractName => cy.wrap(lastContractName).as('lastContractName'))
 
     mainContractsView.firstTitleTab().invoke('text').then((contractNameTab) => { //validate that the last contract was opened in a new tab
@@ -64,7 +64,7 @@ describe('remix ide spec', () => {
     })
 
     cy.readFile('cypress/support/smart-contracts/HotFudgeSauce.sol').then((contractCode) => { //code the contract
-      mainContractsView.editorView().type(contractCode)
+      mainContractsView.editorView().type(contractCode, { delay: 0 }) //delay:0 if not the IDE automatically adds additional closes for the curly braces
     })
 
     mainContractsView.editorView().first().invoke('text').should('not.to.be.empty') //validate the contract is not empty
@@ -72,28 +72,15 @@ describe('remix ide spec', () => {
     mainContractsView.editorView().contains('SPDX-License-Identifier').should('be.visible') //validate the contract was written
   })
 
-  it.only('compile contract', () => {
-    cy.pause()
+  it('compile contract', () => {
     solidityCompiler().click()
     sidePanel.versionSelectorDdl().select('soljson-v0.8.8+commit.dddeac2f.js')
-    cy.wait(9000) //hardcoded sleep since the button change its visibility/active for a while
-    sidePanel.compileBtn().should('be.visible').click()
-    //validate the contract is deployed
-    cy.get('#compiledContracts').invoke('text').then(cy.log)
-    cy.log(">>>1")
-    cy.get('#compiledContracts').invoke('text').then(($text) => { cy.log($text) })
-    cy.get('#compiledContracts').should('include.text', 'HotFudgeSauce')
-    cy.log('📕🤖📕: [ >>>0 ]()')
-    cy.get('#compiledContracts').should('contain', 'HotFudgeSauce')
-    //cy.get('#compiledContracts').should('have.text', 'HotFudgeSauce')
-    cy.get('#compiledContracts').should('exist')
+
+    sidePanel.compileBtn().should('be.enabled').click()
+
+    sidePanel.compiledContracts() //validate the contract was compiled
+      .should('exist')
       .and('be.visible')
-    //cy.get('#compiledContracts').invoke('text').should('include.text', 'HotFudgeSauce') //You attempted to make a chai-jQuery assertion on an object that is neither a DOM object or a jQuery object.
-    //cy.log(cy.get('#compiledContracts').invoke('text')) //{specwindow: <window>, chainerid: ch-https://remix.ethereum.org-112}
-    //cy.get('#compiledContracts').contains('HotFudgeSauce').should('be.visible')
-    /* cy.get('#compiledContracts option').contains('HotFudgeSauce').should('be.visible')
-    cy.log(">>>2")
-    cy.get('#compiledContracts').contains('HotFudgeSauce').should('exist') */
+      .and('contain.text', 'HotFudgeSauce')
   })
 })
-
