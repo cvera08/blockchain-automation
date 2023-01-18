@@ -1,5 +1,5 @@
 import * as modalSelectors from "../support/selectors/remix/modals"
-import { deployAndRunTransactions, fileExplorer } from "../support/selectors/remix/icon-panel"
+import { deployAndRunTransactions, fileExplorer, solidityCompiler } from "../support/selectors/remix/icon-panel"
 import * as sidePanel from "../support/selectors/remix/side-panel"
 import * as mainContractsView from "../support/selectors/remix/main-contracts-view"
 
@@ -46,7 +46,7 @@ describe('remix ide spec', () => {
     const contractName = `X_ATC_${Cypress._.random(0, 1e6)}.sol`
 
     sidePanel.contractList().its('length').then((number) => { cy.wrap(number).as('contractsAmount') })
-    sidePanel.createNewFile().click().type(`${contractName}{enter}`)
+    sidePanel.createNewFile().click().type(`${contractName}{enter}`, { delay: 100 })
 
     cy.get('@contractsAmount').then((contractsAmount) => { //validate there is one new element in the contract list
       sidePanel.contractList().its('length').should('eq', contractsAmount + 1)
@@ -56,7 +56,7 @@ describe('remix ide spec', () => {
 
   it('create hot fudge sauce contract', () => {
     sidePanel.contractListNames().last()
-      .click()
+      .click({ force: true }) //overlay from icon panel
       .invoke('text').then(lastContractName => cy.wrap(lastContractName).as('lastContractName'))
 
     mainContractsView.firstTitleTab().invoke('text').then((contractNameTab) => { //validate that the last contract was opened in a new tab
@@ -64,12 +64,23 @@ describe('remix ide spec', () => {
     })
 
     cy.readFile('cypress/support/smart-contracts/HotFudgeSauce.sol').then((contractCode) => { //code the contract
-      mainContractsView.editorView().type(contractCode)
+      mainContractsView.editorView().type(contractCode, { delay: 0 }) //delay:0 if not the IDE automatically adds additional closes for the curly braces
     })
 
     mainContractsView.editorView().first().invoke('text').should('not.to.be.empty') //validate the contract is not empty
 
     mainContractsView.editorView().contains('SPDX-License-Identifier').should('be.visible') //validate the contract was written
   })
-})
 
+  it('compile contract', () => {
+    solidityCompiler().click()
+    sidePanel.versionSelectorDdl().select('soljson-v0.8.8+commit.dddeac2f.js')
+
+    sidePanel.compileBtn().should('be.enabled').click()
+
+    sidePanel.compiledContracts() //validate the contract was compiled
+      .should('exist')
+      .and('be.visible')
+      .and('contain.text', 'HotFudgeSauce')
+  })
+})
