@@ -83,4 +83,14 @@ describe('remix ide spec', () => {
       .and('be.visible')
       .and('contain.text', 'HotFudgeSauce')
   })
+
+  it.only('deploy contract', () => {
+    cy.pause()
+    //verify there is a contract already compiled
+    deployAndRunTransactions().click()
+    cy.get('.udapp_contractNames').and('contain.text', 'HotFudgeSauce - contracts/')
+    cy.get('.udapp_contractActionsContainerSingle button[data-id="Deploy - transact (not payable)"]').click()
+    //cy.get('.input-group-text').and('contain.text', 'HOTFUDGESAUCE') 
+    cy.get('.input-group-text').and('contain.text', 'HotFudgeSauce')
+  })
 })
