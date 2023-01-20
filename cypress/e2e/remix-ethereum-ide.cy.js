@@ -1,6 +1,7 @@
 import * as modalSelectors from "../support/selectors/remix/modals"
 import { deployAndRunTransactions, fileExplorer, solidityCompiler } from "../support/selectors/remix/icon-panel"
 import * as sidePanel from "../support/selectors/remix/side-panel"
+import * as sidePanelDeployRunTransactions from "../support/selectors/remix/side-panel-deploy-and-run-transactions"
 import * as mainContractsView from "../support/selectors/remix/main-contracts-view"
 
 describe('remix ide spec', () => {
@@ -84,13 +85,11 @@ describe('remix ide spec', () => {
       .and('contain.text', 'HotFudgeSauce')
   })
 
-  it.only('deploy contract', () => {
-    cy.pause()
-    //verify there is a contract already compiled
+  it('deploy contract', () => {
     deployAndRunTransactions().click()
-    cy.get('.udapp_contractNames').and('contain.text', 'HotFudgeSauce - contracts/')
-    cy.get('.udapp_contractActionsContainerSingle button[data-id="Deploy - transact (not payable)"]').click()
-    //cy.get('.input-group-text').and('contain.text', 'HOTFUDGESAUCE') 
-    cy.get('.input-group-text').and('contain.text', 'HotFudgeSauce')
+    sidePanelDeployRunTransactions.compiledContracts().and('contain.text', 'HotFudgeSauce - contracts/') //verify there is a contract already compiled
+
+    sidePanelDeployRunTransactions.deployBtn().click()
+    sidePanelDeployRunTransactions.deployedContractsLabel().and('contain.text', 'HotFudgeSauce')
   })
 })
