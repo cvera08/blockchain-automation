@@ -1,6 +1,7 @@
 import * as modalSelectors from "../support/selectors/remix/modals"
 import { deployAndRunTransactions, fileExplorer, solidityCompiler } from "../support/selectors/remix/icon-panel"
 import * as sidePanel from "../support/selectors/remix/side-panel"
+import * as sidePanelDeployRunTransactions from "../support/selectors/remix/side-panel-deploy-and-run-transactions"
 import * as mainContractsView from "../support/selectors/remix/main-contracts-view"
 
 describe('remix ide spec', () => {
@@ -82,5 +83,13 @@ describe('remix ide spec', () => {
       .should('exist')
       .and('be.visible')
       .and('contain.text', 'HotFudgeSauce')
+  })
+
+  it('deploy contract', () => {
+    deployAndRunTransactions().click()
+    sidePanelDeployRunTransactions.compiledContracts().and('contain.text', 'HotFudgeSauce - contracts/') //verify there is a contract already compiled
+
+    sidePanelDeployRunTransactions.deployBtn().click()
+    sidePanelDeployRunTransactions.deployedContractsLabel().and('contain.text', 'HotFudgeSauce')
   })
 })
