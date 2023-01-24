@@ -14,6 +14,27 @@ ___
 4. [Troubleshooting GUI mode](#troubleshooting-gui-mode)
 5. [Run tests in Headless mode (with video output)](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)
 6. [Different ways to use Cypress](#different-ways-to-use-cypress)
-7. [MIT licence](#mit-licence)
+7. [Miscellaneous](#miscellaneous)
+8. [MIT licence](#mit-licence)
+9. [Change Log](#change-log)
 
 ___
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#requisites)Requisites:
+<br/>
+
+##### 1- Install Git locally
+You can follow one of these links:  
+
+- Windows, Linux, Mac:  
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git  
+<br/>
+
+- Homebrew:  
+https://www.atlassian.com/git/tutorials/install-git
+
+```bash
+brew install git
+```
+
+<br/>
