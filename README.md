@@ -47,3 +47,22 @@ You can follow one of these links:
 | ***Homebrew***      | https://www.atlassian.com/git/tutorials/install-git         | `brew install git`                                         |
 
 </details>  
+
+
+<details>
+<summary>
+
+#### 2. Install Node locally</summary>  
+
+<br/>
+You can follow one of these links:  
+<br/>
+
+|    Option           |              Link                                                |                          Command                      |
+| ------------------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
+| ***Windows, Linux, Mac***| https://nodejs.org/en/download/current                      |  _use the previous link depending on your OS_         |
+| ***Homebrew***      | https://www.atlassian.com/git/tutorials/install-git              | `brew install node`                                   |
+
+</details>  
+
+___
