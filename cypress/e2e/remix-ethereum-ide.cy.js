@@ -24,7 +24,7 @@ describe('remix ide spec', () => {
   it('deploy & run transactions menu', () => {
     sidePanel.validateFileExplorerTitle()
 
-    deployAndRunTransactions().click() //if "Help us to improve Remix IDE" modal is still displayed you need to use "..udapp/i}, {timeout: 30000}).click({force: true})"
+    deployAndRunTransactions().click({ force: true }) //if "Help us to improve Remix IDE" modal is still displayed you need to use "..udapp/i}, {timeout: 30000}).click({force: true})"
     sidePanel.deployRunTransactionsTitle().should('be.visible').and('have.text', 'Deploy & run transactions')
   })
 
