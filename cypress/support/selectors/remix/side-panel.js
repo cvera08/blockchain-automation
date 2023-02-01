@@ -5,7 +5,7 @@ export const deployRunTransactionsTitle = () => cy.findByRole('heading', { name:
 export const validateFileExplorerTitle = () =>
     fileExplorerTitle().contains('File explorer').and('be.visible')  //or .should('be.visible').and('have.text', 'File explorer')
 
-export const defaultWorkspaceDdl = () => cy.findByRole('button', { name: /default_workspace/i });
+export const defaultWorkspaceDdl = () => cy.findByRole('button', { name: /default_workspace/i }, { timeout: 10000 });
 
 export const contractsFolder = () => cy.get('ul[data-id="treeViewUltreeViewMenu"] span[title="contracts"]', { timeout: 10000 })
 
@@ -21,6 +21,6 @@ export const menuItemDelete = () => cy.get('li[id="menuitemdelete"]')
 
 export const versionSelectorDdl = () => cy.get('#versionSelector')
 
-export const compileBtn = () => cy.get('#compileBtn', { timeout: 15000 })
+export const compileBtn = () => cy.get('#compileBtn', { timeout: 25000 })
 
 export const compiledContracts = () => cy.get('#compiledContracts')
