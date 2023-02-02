@@ -92,4 +92,30 @@ describe('remix ide spec', () => {
     sidePanelDeployRunTransactions.deployBtn().click()
     sidePanelDeployRunTransactions.deployedContractsLabel().and('contain.text', 'HotFudgeSauce')
   })
+
+  it.only('check options of deployed contract', () => {
+    cy.pause()
+    cy.get('.udapp_titleExpander'). click()
+
+    cy.get('[data-id="instanceContractBal"] > label')
+      .contains('Balance')
+      .should('be.visible')
+
+
+
+    /*     cy.get('button[data-id="decrement - transact (not payable)"]')
+          //.wait(4000)
+          //.debug()
+          .scrollIntoView()
+          .filter(':visible')
+          .and('have.text', 'decrement') */
+
+    cy.contains('decrement')
+      .scrollIntoView()
+      .should('be.visible')
+
+    //incrementDeployedContractBtn().should('be.visible')
+    //getDeployedContractBtn().should('be.visible')
+    //qtyCupsDeployedContractBtn().should('be.visible')
+  })
 })
