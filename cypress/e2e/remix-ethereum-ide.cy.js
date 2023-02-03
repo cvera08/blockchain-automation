@@ -95,27 +95,18 @@ describe('remix ide spec', () => {
 
   it.only('check options of deployed contract', () => {
     cy.pause()
-    cy.get('.udapp_titleExpander'). click()
+    sidePanelDeployRunTransactions.openCloseDeployedContract().click()
 
-    cy.get('[data-id="instanceContractBal"] > label')
+    sidePanelDeployRunTransactions.balanceDeployedContractLbl()
       .contains('Balance')
       .should('be.visible')
 
-
-
-    /*     cy.get('button[data-id="decrement - transact (not payable)"]')
-          //.wait(4000)
-          //.debug()
-          .scrollIntoView()
-          .filter(':visible')
-          .and('have.text', 'decrement') */
-
-    cy.contains('decrement')
+    sidePanelDeployRunTransactions.decrementDeployedContractBtn()
       .scrollIntoView()
       .should('be.visible')
 
-    //incrementDeployedContractBtn().should('be.visible')
-    //getDeployedContractBtn().should('be.visible')
-    //qtyCupsDeployedContractBtn().should('be.visible')
+    sidePanelDeployRunTransactions.incrementDeployedContractBtn().should('be.visible')
+    sidePanelDeployRunTransactions.getDeployedContractBtn().should('be.visible')
+    sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
   })
 })
