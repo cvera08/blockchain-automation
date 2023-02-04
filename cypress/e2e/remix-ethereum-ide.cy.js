@@ -93,8 +93,7 @@ describe('remix ide spec', () => {
     sidePanelDeployRunTransactions.deployedContractsLabel().and('contain.text', 'HotFudgeSauce')
   })
 
-  it.only('check options of deployed contract', () => {
-    cy.pause()
+  it('check options of deployed contract', () => {
     sidePanelDeployRunTransactions.openCloseDeployedContract().click()
 
     sidePanelDeployRunTransactions.balanceDeployedContractLbl()
