@@ -100,10 +100,7 @@ describe('remix ide spec', () => {
       .contains('Balance')
       .should('be.visible')
 
-    sidePanelDeployRunTransactions.decrementDeployedContractBtn()
-      .scrollIntoView()
-      .should('be.visible')
-
+    sidePanelDeployRunTransactions.decrementDeployedContractBtn().scrollIntoView().should('be.visible')
     sidePanelDeployRunTransactions.incrementDeployedContractBtn().should('be.visible')
     sidePanelDeployRunTransactions.getDeployedContractBtn().should('be.visible')
     sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
