@@ -92,4 +92,17 @@ describe('remix ide spec', () => {
     sidePanelDeployRunTransactions.deployBtn().click()
     sidePanelDeployRunTransactions.deployedContractsLabel().and('contain.text', 'HotFudgeSauce')
   })
+
+  it('check options of deployed contract', () => {
+    sidePanelDeployRunTransactions.openCloseDeployedContract().click()
+
+    sidePanelDeployRunTransactions.balanceDeployedContractLbl()
+      .contains('Balance')
+      .should('be.visible')
+
+    sidePanelDeployRunTransactions.decrementDeployedContractBtn().scrollIntoView().should('be.visible')
+    sidePanelDeployRunTransactions.incrementDeployedContractBtn().should('be.visible')
+    sidePanelDeployRunTransactions.getDeployedContractBtn().should('be.visible')
+    sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
+  })
 })
