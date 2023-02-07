@@ -106,13 +106,13 @@ describe('remix ide spec', () => {
     sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
   })
 
-    /* ability to stop the execution if the test fails.
-      Already configured to run sequentially in cypress.config.js 
-      by using "testIsolation: false") */
-      afterEach(function () {
-        if (this.currentTest.state === 'failed') {
-          Cypress.runner.stop()
-        }
-      })
-    
+  /* ability to stop the execution if the test fails.
+    Already configured to run sequentially in cypress.config.js 
+    by using "testIsolation: false") */
+  afterEach(function () {
+    if (this.currentTest.state === 'failed') {
+      Cypress.runner.stop()
+    }
+  })
+
 })
