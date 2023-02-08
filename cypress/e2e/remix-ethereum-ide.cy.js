@@ -15,6 +15,15 @@ describe('remix ide spec', () => {
     cy.log(".")
   })
 
+  /* ability to stop the execution if the test fails.
+  Already configured to run sequentially in cypress.config.js 
+  by using "testIsolation: false") */
+  afterEach(function () {
+    if (this.currentTest.state === 'failed') {
+      Cypress.runner.stop()
+    }
+  })
+
   /* Important: 
   testIsolation: false (cypress.config.js)
   This suite is running one test after the other considering the last stage of the previous one,
@@ -104,15 +113,6 @@ describe('remix ide spec', () => {
     sidePanelDeployRunTransactions.incrementDeployedContractBtn().should('be.visible')
     sidePanelDeployRunTransactions.getDeployedContractBtn().should('be.visible')
     sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
-  })
-
-  /* ability to stop the execution if the test fails.
-    Already configured to run sequentially in cypress.config.js 
-    by using "testIsolation: false") */
-  afterEach(function () {
-    if (this.currentTest.state === 'failed') {
-      Cypress.runner.stop()
-    }
   })
 
 })
