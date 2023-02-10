@@ -24,6 +24,7 @@ describe('remix ide spec', () => {
     }
   })
 
+  context('site is alive', () => {
   /* Important: 
   testIsolation: false (cypress.config.js)
   This suite is running one test after the other considering the last stage of the previous one,
@@ -36,7 +37,10 @@ describe('remix ide spec', () => {
     deployAndRunTransactions().click({ force: true }) //if "Help us to improve Remix IDE" modal is still displayed you need to use "..udapp/i}, {timeout: 30000}).click({force: true})"
     sidePanel.deployRunTransactionsTitle().should('be.visible').and('have.text', 'Deploy & run transactions')
   })
+  })
 
+  context('test contracts', () => {
+    context('contract setup', () => {
   it('delete first contract', () => {
     fileExplorer().click()
     sidePanel.validateFileExplorerTitle()
@@ -63,7 +67,9 @@ describe('remix ide spec', () => {
     })
     sidePanel.contractListNames().contains(contractName) //validate the new contract name is present
   })
+  })
 
+  context('build contract', () => {
   it('create hot fudge sauce contract', () => {
     sidePanel.contractListNames().last()
       .click({ force: true }) //overlay from icon panel
@@ -114,5 +120,7 @@ describe('remix ide spec', () => {
     sidePanelDeployRunTransactions.getDeployedContractBtn().should('be.visible')
     sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
   })
+})
+})
 
 })
