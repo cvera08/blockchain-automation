@@ -44,7 +44,7 @@ describe('remix ide spec', () => {
       it('delete first contract', () => {
         fileExplorer().click()
         sidePanel.validateFileExplorerTitle()
-        cy.wait(4000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
+        cy.wait(8000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
         sidePanel.defaultWorkspaceDdl().should('be.visible')
         sidePanel.contractsFolder().click({ force: true })
         sidePanel.firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
