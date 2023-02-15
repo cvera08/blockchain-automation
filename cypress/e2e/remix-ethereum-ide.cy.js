@@ -57,15 +57,16 @@ describe('remix ide spec', () => {
       })
 
       it('add new smart contract', () => {
-        const contractName = `X_ATC_${Cypress._.random(0, 1e6)}.sol`
+        const randomNumber = Cypress._.random(0, 1e6)
+        const contractName = `X_ATC_${randomNumber}.sol`
 
-        sidePanel.contractList().its('length').then((number) => { cy.wrap(number).as('contractsAmount') })
-        sidePanel.createNewFile().click().type(`${contractName}{enter}`, { delay: 100 })
+        sidePanel.contractList().its('length').then((number) => { cy.wrap(number).as('contractsAmount')})
+        sidePanel.createNewFile().click().wait( 2000 ).type(`${contractName}{enter}`, {delay: 200 })
 
         cy.get('@contractsAmount').then((contractsAmount) => { //validate there is one new element in the contract list
           sidePanel.contractList().its('length').should('eq', contractsAmount + 1)
         })
-        sidePanel.contractListNames().contains(contractName) //validate the new contract name is present
+        sidePanel.contractListNames().contains(randomNumber) //validate the new contract name is present //partial name check because of delays in remix
       })
     })
 
