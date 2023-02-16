@@ -60,8 +60,8 @@ describe('remix ide spec', () => {
         const randomNumber = Cypress._.random(0, 1e6)
         const contractName = `X_ATC_${randomNumber}.sol`
 
-        sidePanel.contractList().its('length').then((number) => { cy.wrap(number).as('contractsAmount')})
-        sidePanel.createNewFile().click().wait( 2000 ).type(`${contractName}{enter}`, {delay: 200 })
+        sidePanel.contractList().its('length').then((number) => { cy.wrap(number).as('contractsAmount') })
+        sidePanel.createNewFile().click().wait(2000).type(`${contractName}{enter}`, { delay: 200 })
 
         cy.get('@contractsAmount').then((contractsAmount) => { //validate there is one new element in the contract list
           sidePanel.contractList().its('length').should('eq', contractsAmount + 1)
