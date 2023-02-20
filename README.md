@@ -91,3 +91,7 @@ cd blockchain-automation
 npm i
 ```
 ___
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#quick-run)Quick run:
+[Please follow to this section ▼](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)
+___
