@@ -66,3 +66,32 @@ You can follow one of these links:
 </details>  
 
 ___
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#configure-this-project)Configure this project:
+Open your console/terminal and run this: 
+```sh
+cd </your/desired/project/path/>
+```
+
+```sh
+git clone https://github.com/cvera08/blockchain-automation.git
+```
+
+<!--- 
+<sub> *// HINT: you can copy all these commands with a single click on the copy icon that will be displayed when you mouse over the console/code sections* </sub>   
+<img src="https://i.ibb.co/f8hX6sb/your-desired-path.png" alt="drawing" width="250"/>
+<br/>
+![alt text](https://i.ibb.co/4RwZnmZ/image.png)
+--->
+
+<img src="https://i.ibb.co/4RwZnmZ/image.png" alt="drawing" width="800"/>
+
+```sh
+cd blockchain-automation
+npm i
+```
+___
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#quick-run)Quick run:
+[Please follow to this section ▼](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)
+___
