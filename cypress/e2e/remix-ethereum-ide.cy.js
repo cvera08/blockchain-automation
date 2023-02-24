@@ -121,6 +121,31 @@ describe('remix ide spec', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().should('be.visible')
         sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
       })
+
+      it.only('increment', () => {
+        cy.pause()
+        //cy.get('.udapp_instanceButton').contains('/^get$/')//exact match text
+        //cy.get('.udapp_instanceButton').contains('/get/')//exact match text
+        cy.get('.udapp_instanceButton')
+        .contains(new RegExp('get', "g"))//exact match text
+          .click()
+          .invoke('text')
+        cy.pause()
+        //sidePanelDeployRunTransactions.getDeployedContractBtn().click()
+
+          cy.get('.udapp_instanceButton').contains(new RegExp('get', "g"))
+          //sidePanelDeployRunTransactions.getDeployedContractBtn()
+          //.parent('div.udapp_contractProperty')
+          //.parentsUntil('div.udapp_contractProperty')
+          .parents('div.udapp_contractProperty')
+          .siblings('div[data-id="udapp_value"]')
+          .contains('uint256:')
+          .invoke('text')
+          .then($text => cy.wrap($text.replace('uint256: ', '')).as('getCurrentNumberHotFudgeSauce'))
+          //.replace('uint256: ', '') //cleaning string and getting the real value
+
+        //div.udapp_contractProperty div[data-id="udapp_value"]
+      })
     })
   })
 
