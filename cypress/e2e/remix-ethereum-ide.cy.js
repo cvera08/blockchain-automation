@@ -122,29 +122,66 @@ describe('remix ide spec', () => {
         sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
       })
 
-      it.only('increment', () => {
+      it.only('increment and check value', () => {
         cy.pause()
-        //cy.get('.udapp_instanceButton').contains('/^get$/')//exact match text
-        //cy.get('.udapp_instanceButton').contains('/get/')//exact match text
+
         cy.get('.udapp_instanceButton')
-        .contains(new RegExp('get', "g"))//exact match text
+          .contains(/^get$/)//exact match text
           .click()
-          .invoke('text')
-        cy.pause()
         //sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-          cy.get('.udapp_instanceButton').contains(new RegExp('get', "g"))
+        cy.get('.udapp_instanceButton').contains(/^get$/)
           //sidePanelDeployRunTransactions.getDeployedContractBtn()
-          //.parent('div.udapp_contractProperty')
-          //.parentsUntil('div.udapp_contractProperty')
           .parents('div.udapp_contractProperty')
           .siblings('div[data-id="udapp_value"]')
           .contains('uint256:')
-          .invoke('text')
-          .then($text => cy.wrap($text.replace('uint256: ', '')).as('getCurrentNumberHotFudgeSauce'))
-          //.replace('uint256: ', '') //cleaning string and getting the real value
+          .invoke('text') //sidePanelDeployRunTransactions.getUintText()
+          .then($text => cy.wrap(
+            $text.replace('uint256: ', '')) //filtering string to get just the value
+            .as('originalNumberHotFudgeSauce')
+            )
+        
+        cy.get('.udapp_instanceButton').contains(/^increment$/)
+            .click()
+            .wait(1000) //until transaction is processed
+        //sidePanelDeployRunTransactions.incrementDeployedContractBtn().click()
 
-        //div.udapp_contractProperty div[data-id="udapp_value"]
+        cy.get('.udapp_instanceButton').contains(/^get$/)
+          //sidePanelDeployRunTransactions.getDeployedContractBtn()
+          .click()
+          .wait(1000)
+
+          .parents('div.udapp_contractProperty')
+          .siblings('div[data-id="udapp_value"]')
+          .contains('uint256:')
+          .invoke('text') //sidePanelDeployRunTransactions.getUintText()
+          .then($text => cy.wrap(
+            $text.replace('uint256: ', '')) //filtering string to get just the value
+            .as('updatedNumberHotFudgeSauce')
+            )
+
+        //cy.pause()
+
+        /* cy.get('@originalNumberHotFudgeSauce')
+        .should('eq', cy.get('@updatedNumberHotFudgeSauce') + 1 ) */
+
+        /* cy.get('@updatedNumberHotFudgeSauce')
+        .then((updatedNumberHotFudgeSauce) => {
+          cy.get('@originalNumberHotFudgeSauce')
+          .should('eq', updatedNumberHotFudgeSauce + 1 )
+        }) */
+
+        cy.get('@originalNumberHotFudgeSauce')
+        .then((originalNumberHotFudgeSauce) => {
+          cy.get('@updatedNumberHotFudgeSauce')
+          //.should('eq', originalNumberHotFudgeSauce + 1 )
+          //.should('eq', Number(originalNumberHotFudgeSauce + 1) )
+          .then((updatedNumberHotFudgeSauce) => {
+            expect(Number(updatedNumberHotFudgeSauce))
+              .to.equal(Number(originalNumberHotFudgeSauce + 1));
+          })
+        })
+
       })
     })
   })
