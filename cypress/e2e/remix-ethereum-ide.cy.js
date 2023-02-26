@@ -125,64 +125,49 @@ describe('remix ide spec', () => {
       it.only('increment and check value', () => {
         cy.pause()
 
-        cy.get('.udapp_instanceButton')
+        /* cy.get('.udapp_instanceButton')
           .contains(/^get$/)//exact match text
-          .click()
-        //sidePanelDeployRunTransactions.getDeployedContractBtn().click()
+          .click() */
+        sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-        cy.get('.udapp_instanceButton').contains(/^get$/)
-          //sidePanelDeployRunTransactions.getDeployedContractBtn()
+        //cy.get('.udapp_instanceButton').contains(/^get$/)
+        /* sidePanelDeployRunTransactions.getDeployedContractBtn()
           .parents('div.udapp_contractProperty')
           .siblings('div[data-id="udapp_value"]')
           .contains('uint256:')
-          .invoke('text') //sidePanelDeployRunTransactions.getUintText()
+          .invoke('text') */
+          sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap(
             $text.replace('uint256: ', '')) //filtering string to get just the value
             .as('originalNumberHotFudgeSauce')
             )
         
-        cy.get('.udapp_instanceButton').contains(/^increment$/)
+        //cy.get('.udapp_instanceButton').contains(/^increment$/)
+        sidePanelDeployRunTransactions.incrementDeployedContractBtn()
             .click()
             .wait(1000) //until transaction is processed
         //sidePanelDeployRunTransactions.incrementDeployedContractBtn().click()
 
-        cy.get('.udapp_instanceButton').contains(/^get$/)
-          //sidePanelDeployRunTransactions.getDeployedContractBtn()
+        //cy.get('.udapp_instanceButton').contains(/^get$/)
+          sidePanelDeployRunTransactions.getDeployedContractBtn()
           .click()
           .wait(1000)
 
-          .parents('div.udapp_contractProperty')
+          /* .parents('div.udapp_contractProperty')
           .siblings('div[data-id="udapp_value"]')
           .contains('uint256:')
-          .invoke('text') //sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap(
-            $text.replace('uint256: ', '')) //filtering string to get just the value
-            .as('updatedNumberHotFudgeSauce')
-            )
+          .invoke('text') */
+          sidePanelDeployRunTransactions.getUintText()
+          .then($text => cy.wrap($text.replace('uint256: ', '')).as('updatedNumberHotFudgeSauce'))
 
-        //cy.pause()
-
-        /* cy.get('@originalNumberHotFudgeSauce')
-        .should('eq', cy.get('@updatedNumberHotFudgeSauce') + 1 ) */
-
-        /* cy.get('@updatedNumberHotFudgeSauce')
-        .then((updatedNumberHotFudgeSauce) => {
-          cy.get('@originalNumberHotFudgeSauce')
-          .should('eq', updatedNumberHotFudgeSauce + 1 )
-        }) */
-
-        cy.get('@originalNumberHotFudgeSauce')
-        .then((originalNumberHotFudgeSauce) => {
-          cy.get('@updatedNumberHotFudgeSauce')
-          //.should('eq', originalNumberHotFudgeSauce + 1 )
-          //.should('eq', Number(originalNumberHotFudgeSauce + 1) )
-          .then((updatedNumberHotFudgeSauce) => {
-            expect(Number(updatedNumberHotFudgeSauce))
-              .to.equal(Number(originalNumberHotFudgeSauce + 1));
+        cy.get('@originalNumberHotFudgeSauce').then((originalNumberHotFudgeSauce) => {
+          cy.get('@updatedNumberHotFudgeSauce').then((updatedNumberHotFudgeSauce) => {
+            expect(Number(updatedNumberHotFudgeSauce)).to.equal(Number(originalNumberHotFudgeSauce + 1))
           })
         })
 
       })
+      
     })
   })
 
