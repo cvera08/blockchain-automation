@@ -10,8 +10,14 @@ export const balanceDeployedContractLbl = () => cy.get('[data-id="instanceContra
 
 export const decrementDeployedContractBtn = () => cy.contains('decrement')
 
-export const incrementDeployedContractBtn = () => cy.contains('increment')
+export const incrementDeployedContractBtn = () => cy.get('.udapp_instanceButton').contains(/^increment$/)
 
-export const getDeployedContractBtn = () => cy.contains('get')
+export const getDeployedContractBtn = () => cy.get('.udapp_instanceButton').contains(/^get$/) //exact match text
+
+export const getUintText = () => getDeployedContractBtn()
+    .parents('div.udapp_contractProperty')
+    .siblings('div[data-id="udapp_value"]')
+    .contains('uint256:')
+    .invoke('text')
 
 export const qtyCupsDeployedContractBtn = () => cy.contains('qtyCups')
