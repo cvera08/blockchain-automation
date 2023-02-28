@@ -122,42 +122,21 @@ describe('remix ide spec', () => {
         sidePanelDeployRunTransactions.qtyCupsDeployedContractBtn().should('be.visible')
       })
 
-      it.only('increment and check value', () => {
-        cy.pause()
-
-        /* cy.get('.udapp_instanceButton')
-          .contains(/^get$/)//exact match text
-          .click() */
+      it('increment and check value', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-        //cy.get('.udapp_instanceButton').contains(/^get$/)
-        /* sidePanelDeployRunTransactions.getDeployedContractBtn()
-          .parents('div.udapp_contractProperty')
-          .siblings('div[data-id="udapp_value"]')
-          .contains('uint256:')
-          .invoke('text') */
-          sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap(
-            $text.replace('uint256: ', '')) //filtering string to get just the value
-            .as('originalNumberHotFudgeSauce')
-            )
+        sidePanelDeployRunTransactions.getUintText()
+          .then($text => cy.wrap($text.replace('uint256: ', '')) .as('originalNumberHotFudgeSauce')) //filtering string to get just the value
         
-        //cy.get('.udapp_instanceButton').contains(/^increment$/)
         sidePanelDeployRunTransactions.incrementDeployedContractBtn()
             .click()
             .wait(1000) //until transaction is processed
-        //sidePanelDeployRunTransactions.incrementDeployedContractBtn().click()
 
-        //cy.get('.udapp_instanceButton').contains(/^get$/)
-          sidePanelDeployRunTransactions.getDeployedContractBtn()
+        sidePanelDeployRunTransactions.getDeployedContractBtn()
           .click()
           .wait(1000)
 
-          /* .parents('div.udapp_contractProperty')
-          .siblings('div[data-id="udapp_value"]')
-          .contains('uint256:')
-          .invoke('text') */
-          sidePanelDeployRunTransactions.getUintText()
+        sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap($text.replace('uint256: ', '')).as('updatedNumberHotFudgeSauce'))
 
         cy.get('@originalNumberHotFudgeSauce').then((originalNumberHotFudgeSauce) => {
@@ -165,7 +144,6 @@ describe('remix ide spec', () => {
             expect(Number(updatedNumberHotFudgeSauce)).to.equal(Number(originalNumberHotFudgeSauce + 1))
           })
         })
-
       })
       
     })
