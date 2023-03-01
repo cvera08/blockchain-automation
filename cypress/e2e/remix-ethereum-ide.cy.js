@@ -126,11 +126,11 @@ describe('remix ide spec', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
         sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap($text.replace('uint256: ', '')) .as('originalNumberHotFudgeSauce')) //filtering string to get just the value
-        
+          .then($text => cy.wrap($text.replace('uint256: ', '')).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
+
         sidePanelDeployRunTransactions.incrementDeployedContractBtn()
-            .click()
-            .wait(1000) //until transaction is processed
+          .click()
+          .wait(1000) //until transaction is processed
 
         sidePanelDeployRunTransactions.getDeployedContractBtn()
           .click()
@@ -138,11 +138,9 @@ describe('remix ide spec', () => {
 
         sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap($text.replace('uint256: ', '')).as('updatedNumberHotFudgeSauce'))
-
-        cy.get('@originalNumberHotFudgeSauce').then((originalNumberHotFudgeSauce) => {
-          cy.get('@updatedNumberHotFudgeSauce').then((updatedNumberHotFudgeSauce) => {
-            expect(Number(updatedNumberHotFudgeSauce)).to.equal(Number(originalNumberHotFudgeSauce + 1))
-          })
+        
+        cy.then(function(){
+          expect(Number(this.updatedNumberHotFudgeSauce)).to.equal(Number(this.originalNumberHotFudgeSauce) + 1)
         })
       })
       
