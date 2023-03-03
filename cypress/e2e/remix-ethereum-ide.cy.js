@@ -138,14 +138,14 @@ describe('remix ide spec', () => {
 
         sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('updatedNumberHotFudgeSauce'))
-        
-        cy.then(function(){
+
+        cy.then(function () {
           expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
 
           expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
         })
       })
-      
+
     })
   })
 
