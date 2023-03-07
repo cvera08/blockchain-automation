@@ -41,11 +41,29 @@ describe('remix ide spec', () => {
 
   context('test contracts', () => {
     context('contract setup', () => {
-      it('delete first contract', () => {
-        fileExplorer().click()
+      it.only('delete first contract', () => {
+        fileExplorer().click({force: true})
         sidePanel.validateFileExplorerTitle()
-        cy.wait(8000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
-        sidePanel.defaultWorkspaceDdl().should('be.visible')
+        //cy.wait(8000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
+        //sidePanel.defaultWorkspaceDdl().should('be.visible') 
+        //cy.contains('#workspacesSelect .mr-auto', 'localhost', { timeout: 10000 }).should('not.be.visible') //cy.get('#workspacesSelect > .btn > .d-flex > .mr-auto')
+        cy.get('#workspacesSelect .mr-auto')
+          .contains('localhost')
+          .should('be.visible')
+          //.should('not.exist')
+
+          /* cy.contains('.remixui_tooltip', 'connecting to localhost...')
+          .should('be.visible') */ //it works but it is better the previous approach since 'connecting to localhost...' can be present in 'default_workspace' and previous to 'localhost'
+
+        cy.get('#workspacesSelect .mr-auto')
+         .contains('default_workspace', { timeout: 10000 })
+          .should('be.visible')
+
+/*           .then(()=> {
+            expect(false).to.be.true
+        }) */
+
+        
         sidePanel.contractsFolder().click({ force: true })
         sidePanel.firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
         sidePanel.firstContractName().rightclick({ force: true })
