@@ -41,15 +41,17 @@ describe('remix ide spec', () => {
 
   context('test contracts', () => {
     context('contract setup', () => {
-      it.only('delete first contract', () => {
+      it('delete first contract', () => {
         fileExplorer().click({force: true})
         sidePanel.validateFileExplorerTitle()
-        //cy.wait(8000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
+        //cy.wait(8000) //JUST ELECTRON: I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
         //sidePanel.defaultWorkspaceDdl().should('be.visible') 
         //cy.contains('#workspacesSelect .mr-auto', 'localhost', { timeout: 10000 }).should('not.be.visible') //cy.get('#workspacesSelect > .btn > .d-flex > .mr-auto')
-        cy.get('#workspacesSelect .mr-auto')
+        
+        //NEXT CODE WON'T BE VALID IN FF & CHROME - i need first to check  the browser --if(Electron) do: this else: continue as originally
+        /* cy.get('#workspacesSelect .mr-auto')
           .contains('localhost')
-          .should('be.visible')
+          .should('be.visible') */
           //.should('not.exist')
 
           /* cy.contains('.remixui_tooltip', 'connecting to localhost...')
