@@ -44,27 +44,26 @@ describe('remix ide spec', () => {
       it('delete first contract', () => {
         fileExplorer().click({force: true})
         sidePanel.validateFileExplorerTitle()
-        //cy.wait(8000) //JUST ELECTRON: I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
-        //sidePanel.defaultWorkspaceDdl().should('be.visible') 
-        //cy.contains('#workspacesSelect .mr-auto', 'localhost', { timeout: 10000 }).should('not.be.visible') //cy.get('#workspacesSelect > .btn > .d-flex > .mr-auto')
-        
-        //NEXT CODE WON'T BE VALID IN FF & CHROME - i need first to check  the browser --if(Electron) do: this else: continue as originally
-        /* cy.get('#workspacesSelect .mr-auto')
-          .contains('localhost')
-          .should('be.visible') */
-          //.should('not.exist')
 
-          /* cy.contains('.remixui_tooltip', 'connecting to localhost...')
+        //cy.wait(8000) //JUST ELECTRON: I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
+
+        //cy.log(Cypress.browser) 
+        //{name: 'electron', channel: 'stable', family: 'chromium', displayName: 'Electron', version: '106.0.5249.51', …}
+        //{name: 'chrome', family: 'chromium', channel: 'stable', displayName: 'Chrome', version: '109.0.5414.119', …}
+        //{ name: "firefox", family: "firefox", channel: "stable", displayName: "Firefox", version: "109.0.1", path: "/Applications/Firefox.app/Contents/MacOS/firefox", minSupportedVersion: 86, majorVersion: "109", isHeaded: true, isHeadless: false }
+
+        if (Cypress.browser.name === 'electron') { //NEXT CODE WON'T BE VALID IN FF & CHROME - i need first to check  the browser --if(Electron) do: this else: continue as originally
+           cy.get('#workspacesSelect .mr-auto')
+            .contains('localhost', { timeout: 8000 })
+              .should('be.visible')
+
+              /* cy.contains('.remixui_tooltip', 'connecting to localhost...')
           .should('be.visible') */ //it works but it is better the previous approach since 'connecting to localhost...' can be present in 'default_workspace' and previous to 'localhost'
+        }
 
         cy.get('#workspacesSelect .mr-auto')
          .contains('default_workspace', { timeout: 10000 })
           .should('be.visible')
-
-/*           .then(()=> {
-            expect(false).to.be.true
-        }) */
-
         
         sidePanel.contractsFolder().click({ force: true })
         sidePanel.firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
