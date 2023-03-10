@@ -45,27 +45,17 @@ describe('remix ide spec', () => {
         fileExplorer().click({force: true})
         sidePanel.validateFileExplorerTitle()
 
-        //cy.wait(8000) //JUST ELECTRON: I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
-
-        //cy.log(Cypress.browser) 
-        //{name: 'electron', channel: 'stable', family: 'chromium', displayName: 'Electron', version: '106.0.5249.51', …}
-        //{name: 'chrome', family: 'chromium', channel: 'stable', displayName: 'Chrome', version: '109.0.5414.119', …}
-        //{ name: "firefox", family: "firefox", channel: "stable", displayName: "Firefox", version: "109.0.1", path: "/Applications/Firefox.app/Contents/MacOS/firefox", minSupportedVersion: 86, majorVersion: "109", isHeaded: true, isHeadless: false }
-
-        if (Cypress.browser.name === 'electron') { //NEXT CODE WON'T BE VALID IN FF & CHROME - i need first to check  the browser --if(Electron) do: this else: continue as originally
+        if (Cypress.browser.name === 'electron') { //No need of this code in other browsers than Electron.
            cy.get('#workspacesSelect .mr-auto')
             .contains('localhost', { timeout: 8000 })
               .should('be.visible')
-
-              /* cy.contains('.remixui_tooltip', 'connecting to localhost...')
-          .should('be.visible') */ //it works but it is better the previous approach since 'connecting to localhost...' can be present in 'default_workspace' and previous to 'localhost'
         }
 
         cy.get('#workspacesSelect .mr-auto')
          .contains('default_workspace', { timeout: 10000 })
           .should('be.visible')
         
-        sidePanel.contractsFolder().click({ force: true })
+        sidePanel.contractsFolder().click({ force: true }).wait(1000) //FF: wait a moment if not sometimes it grabs nothing as firstContractName
         sidePanel.firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
         sidePanel.firstContractName().rightclick({ force: true })
         sidePanel.menuItemDelete().click()
