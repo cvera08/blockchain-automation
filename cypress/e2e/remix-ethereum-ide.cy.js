@@ -51,8 +51,9 @@ describe('remix ide spec', () => {
               .should('be.visible')
         }
 
-        cy.get('#workspacesSelect .mr-auto')
-         .contains('default_workspace', { timeout: 10000 })
+        /* cy.get('#workspacesSelect .mr-auto')
+         .contains('default_workspace', { timeout: 10000 }) */
+         sidePanel.defaultWorkspaceDdl()
           .should('be.visible')
         
         sidePanel.contractsFolder().click({ force: true }).wait(1000) //FF: wait a moment if not sometimes it grabs nothing as firstContractName
