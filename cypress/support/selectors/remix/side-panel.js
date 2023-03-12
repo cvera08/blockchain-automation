@@ -24,3 +24,14 @@ export const versionSelectorDdl = () => cy.get('#versionSelector')
 export const compileBtn = () => cy.get('#compileBtn', { timeout: 25000 })
 
 export const compiledContracts = () => cy.get('#compiledContracts')
+
+export const waitForDefaultWorkspaceDdl = () => {
+    if (Cypress.browser.name === 'electron') { //No need in other browsers than Electron
+        cy.get('#workspacesSelect .mr-auto')
+            .contains('localhost', { timeout: 8000 })
+            .should('be.visible')
+    }
+
+    defaultWorkspaceDdl()
+        .should('be.visible')
+}
