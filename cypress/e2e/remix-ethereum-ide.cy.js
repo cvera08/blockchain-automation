@@ -42,31 +42,15 @@ describe('remix ide spec', () => {
   context('test contracts', () => {
     context('contract setup', () => {
       it('delete first contract - if exists', () => {
-        fileExplorer().click({force: true})
+        fileExplorer().click({ force: true })
         sidePanel.validateFileExplorerTitle()
 
         sidePanel.waitForDefaultWorkspaceDdl()
-        
-        sidePanel.contractsFolder().click({ force: true }).wait(1000) //FF: wait a moment if not sometimes it grabs nothing as firstContractName
-        //cy.get('ul[data-id="treeViewUltreeViewcontracts"] li:first-child span.text-nowrap')//.should('not.exist');
-        cy.get('ul[data-id="treeViewUltreeViewcontracts"]')//.should('not.exist');
-          .then($elem => {
-            if($elem.find('li:first-child span.text-nowrap').length === 0){
-              cy.log('[NO contracts to delete - empty list]()')
-            }else{
-              sidePanel.firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
-              sidePanel.firstContractName().rightclick({ force: true })
-              sidePanel.menuItemDelete().click()
-              modalSelectors.deleteItemOK().click({ force: true })
-              cy.get('@firstContractName').then((firstContract) => { //Validate first contract name is not visible anymore / does not exist 
-                sidePanel.firstContractName().invoke('text').should('not.eq', firstContract)
-              })
-            }
-          })
 
-        //sidePanel.firstContractName().then(() => expect(false).to.be.true)
-        
+        sidePanel.contractsFolder()
+          .click({ force: true }).wait(1000) //FF: wait a moment if not sometimes it grabs nothing as firstContractName
 
+        sidePanel.deleteFirstContractAction()
       })
 
       it('add new smart contract', () => {

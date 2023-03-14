@@ -1,3 +1,6 @@
+import { deleteItemOK } from './modals'
+
+
 const fileExplorerTitle = () => cy.findByRole('heading', { name: /file explorer/i })
 
 export const deployRunTransactionsTitle = () => cy.findByRole('heading', { name: /deploy & run transactions/i })
@@ -34,4 +37,21 @@ export const waitForDefaultWorkspaceDdl = () => {
 
     defaultWorkspaceDdl()
         .should('be.visible')
+}
+
+export const deleteFirstContractAction = () => {
+    cy.get('ul[data-id="treeViewUltreeViewcontracts"]')
+        .then($elem => {
+            if ($elem.find('li:first-child span.text-nowrap').length === 0) {
+                cy.log('[NO contracts to delete - empty list]()')
+            } else {
+                firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
+                firstContractName().rightclick({ force: true })
+                menuItemDelete().click()
+                deleteItemOK().click({ force: true })
+                cy.get('@firstContractName').then((firstContract) => { //Validate first contract name is not visible anymore / does not exist 
+                    firstContractName().invoke('text').should('not.eq', firstContract)
+                })
+            }
+        })
 }
