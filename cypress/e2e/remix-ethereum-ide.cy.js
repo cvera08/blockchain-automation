@@ -41,19 +41,16 @@ describe('remix ide spec', () => {
 
   context('test contracts', () => {
     context('contract setup', () => {
-      it('delete first contract', () => {
-        fileExplorer().click()
+      it('delete first contract - if exists', () => {
+        fileExplorer().click({ force: true })
         sidePanel.validateFileExplorerTitle()
-        cy.wait(8000) //I mandatorily need to wait here since there is a flash from default_workspace to localhost and come back again
-        sidePanel.defaultWorkspaceDdl().should('be.visible')
-        sidePanel.contractsFolder().click({ force: true })
-        sidePanel.firstContractName().then($value => cy.wrap($value.text()).as('firstContractName')) //Grab the name of the current contract
-        sidePanel.firstContractName().rightclick({ force: true })
-        sidePanel.menuItemDelete().click()
-        modalSelectors.deleteItemOK().click({ force: true })
-        cy.get('@firstContractName').then((firstContract) => { //Validate first contract name is not visible anymore / does not exist 
-          sidePanel.firstContractName().invoke('text').should('not.eq', firstContract)
-        })
+
+        sidePanel.waitForDefaultWorkspaceDdl()
+
+        sidePanel.contractsFolder()
+          .click({ force: true }).wait(1000) //FF: wait a moment if not sometimes it grabs nothing as firstContractName
+
+        sidePanel.deleteFirstContractAction()
       })
 
       it('add new smart contract', () => {
