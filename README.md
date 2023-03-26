@@ -104,3 +104,10 @@ npx cypress open
 ```
 <sub> *// HINT: if the above command does not work for you, try this one instead:* 
 >./node_modules/cypress/bin/cypress open --e2e </sub>   
+
+<br/>
+
+After this:
+- You may select "E2E Testing" (if it is not displayed is fine),
+- Choose a browser (it will grab your local browser installations, you can choose Electron or any of them),
+- Click "Start E2E Testing in \<yourSelectedBrowser>".
