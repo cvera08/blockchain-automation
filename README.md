@@ -111,3 +111,6 @@ After this:
 - You may select "E2E Testing" (if it is not displayed is fine),
 - Choose a browser (it will grab your local browser installations, you can choose Electron or any of them),
 - Click "Start E2E Testing in \<yourSelectedBrowser>".
+
+Now you are able to run the test/s by clicking on any *.cy.js* file.  
+After you clicked on your desired spec file Cypress will start automatically the execution and after a while you will see the output results.
