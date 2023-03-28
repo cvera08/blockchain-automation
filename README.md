@@ -114,3 +114,11 @@ After this:
 
 Now you are able to run the test/s by clicking on any *.cy.js* file.  
 After you clicked on your desired spec file Cypress will start automatically the execution and after a while you will see the output results.
+
+<sub>
+// Once you are done with the execution, you can type ctrl+c in your terminal or close the browser runner and cypress window.
+</sub>
+
+<br/>
+<br/>
+
