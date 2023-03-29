@@ -121,4 +121,3 @@ After you clicked on your desired spec file Cypress will start automatically the
 
 <br/>
 <br/>
-
