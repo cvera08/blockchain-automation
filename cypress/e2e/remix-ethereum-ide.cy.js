@@ -145,25 +145,20 @@ describe('remix ide spec', () => {
 
       it.only('decrement and check value', () => {
         cy.pause()
-        //we need to increment until is equal or mayor than one, otherwise if it is cero when decrements it won't happen too much
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
         sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
 
-        cy.then(function () {
-          cy.log('[🤖debug🤖]()', 1)
-        if(this.originalNumberHotFudgeSauce === 0){ //increment
-          cy.log('[🤖debug🤖]()', 2)
-          sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
+        cy.then(function () { //we need to increment until is equal or mayor than one, otherwise if it is cero when decrements it won't happen too much
+          if (this.originalNumberHotFudgeSauce === 0) { //increment
+            sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
 
-          sidePanelDeployRunTransactions.getDeployedContractBtn().click()
-          sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
-          cy.log('[🤖debug🤖]()', 3)
-        }
-      })
+            sidePanelDeployRunTransactions.getDeployedContractBtn().click()
+            sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+          }
+        })
 
-        cy.log('[🤖debug🤖]()', 4)
         cy.contains('.udapp_instanceButton', /^decrement$/)
           .click()
           .wait(1000) //until transaction is processed
