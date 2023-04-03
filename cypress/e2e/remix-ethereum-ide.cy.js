@@ -159,7 +159,7 @@ describe('remix ide spec', () => {
           }
         })
 
-        cy.contains('.udapp_instanceButton', /^decrement$/)
+        sidePanelDeployRunTransactions.decrementDeployedContractBtn()
           .click()
           .wait(1000) //until transaction is processed
 
