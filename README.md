@@ -121,3 +121,9 @@ After you clicked on your desired spec file Cypress will start automatically the
 
 <br/>
 <br/>
+
+**Demo open/GUI mode:**  
+
+![](https://user-images.githubusercontent.com/28716586/214140170-76e0a31d-5a4f-4b05-9d87-d02900d193ec.gif)
+
+ 
