@@ -127,3 +127,7 @@ After you clicked on your desired spec file Cypress will start automatically the
 ![](https://user-images.githubusercontent.com/28716586/214140170-76e0a31d-5a4f-4b05-9d87-d02900d193ec.gif)
 
  
+**Troubleshooting GUI mode:**  
+
+_If you face some error you need to be sure you are in the base project folder (blockchain-automation) and run 'npm install' again (make sure not to have errors or fix them according to the printed help)_.
+>npm install
