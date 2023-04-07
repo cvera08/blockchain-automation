@@ -131,3 +131,5 @@ After you clicked on your desired spec file Cypress will start automatically the
 
 _If you face some error you need to be sure you are in the base project folder (blockchain-automation) and run 'npm install' again (make sure not to have errors or fix them according to the printed help)_.
 >npm install
+
+If it still does not work, try restarting all the involved programs (like Cypress/VS Code/etc), even your computer if it is necessary and start over again.
