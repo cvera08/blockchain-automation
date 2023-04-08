@@ -133,3 +133,5 @@ _If you face some error you need to be sure you are in the base project folder (
 >npm install
 
 If it still does not work, try restarting all the involved programs (like Cypress/VS Code/etc), even your computer if it is necessary and start over again.
+___
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)Run tests in Headless mode (with video output to see the recording):
