@@ -139,3 +139,5 @@ ___
 cd </your/project/path>/blockchain-automation
 npx cypress run
 ```
+
+<sub> *// HINT: if the above command does not work for you, try this one instead:* 
