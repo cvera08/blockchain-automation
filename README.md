@@ -141,3 +141,5 @@ npx cypress run
 ```
 
 <sub> *// HINT: if the above command does not work for you, try this one instead:* 
+>./node_modules/cypress/bin/cypress run </sub>  
+
