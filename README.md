@@ -143,3 +143,6 @@ npx cypress run
 <sub> *// HINT: if the above command does not work for you, try this one instead:* 
 >./node_modules/cypress/bin/cypress run </sub>  
 
+You will get something like this:  
+
+![headless](https://user-images.githubusercontent.com/28716586/214966102-782521b2-f3cb-453e-8e00-ea5f76ea6c80.png)
