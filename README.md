@@ -146,3 +146,6 @@ npx cypress run
 You will get something like this:  
 
 ![headless](https://user-images.githubusercontent.com/28716586/214966102-782521b2-f3cb-453e-8e00-ea5f76ea6c80.png)
+
+___
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#different-ways-to-use-cypress)Different ways to use Cypress:
