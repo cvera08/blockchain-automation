@@ -135,3 +135,9 @@ _If you face some error you need to be sure you are in the base project folder (
 If it still does not work, try restarting all the involved programs (like Cypress/VS Code/etc), even your computer if it is necessary and start over again.
 ___
 ## [![](https://i.ibb.co/2kHmnLX/image.png)](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)Run tests in Headless mode (with video output to see the recording):
+```sh
+cd </your/project/path>/blockchain-automation
+npx cypress run
+```
+
+<sub> *// HINT: if the above command does not work for you, try this one instead:* 
