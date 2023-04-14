@@ -149,3 +149,7 @@ You will get something like this:
 
 ___
 ## [![](https://i.ibb.co/2kHmnLX/image.png)](#different-ways-to-use-cypress)Different ways to use Cypress:
+Make sure you already are located on your project path before trying to run one/many of the following commands.
+```sh
+cd </your/project/path>/blockchain-automation
+```
