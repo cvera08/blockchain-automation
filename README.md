@@ -153,3 +153,7 @@ Make sure you already are located on your project path before trying to run one/
 ```sh
 cd </your/project/path>/blockchain-automation
 ```
+<br/>
+
+They are ALL going to pursue the same goal:
+>./node_modules/.bin/cypress open
