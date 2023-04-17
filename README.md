@@ -157,3 +157,6 @@ cd </your/project/path>/blockchain-automation
 
 They are ALL going to pursue the same goal:
 >./node_modules/.bin/cypress open
+
+>$(npm bin)/cypress open
+
