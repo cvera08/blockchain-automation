@@ -162,3 +162,5 @@ They are ALL going to pursue the same goal:
 
 >npx cypress open
 
+>yarn run cypress open
+
