@@ -164,3 +164,7 @@ They are ALL going to pursue the same goal:
 
 >yarn run cypress open
 
+___
+
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#miscellaneous)Miscellaneous:
