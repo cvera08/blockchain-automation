@@ -168,3 +168,8 @@ ___
 
 
 ## [![](https://i.ibb.co/2kHmnLX/image.png)](#miscellaneous)Miscellaneous:
+
+
+N/A.
+
+___
