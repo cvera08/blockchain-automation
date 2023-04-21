@@ -160,3 +160,5 @@ They are ALL going to pursue the same goal:
 
 >$(npm bin)/cypress open
 
+>npx cypress open
+
