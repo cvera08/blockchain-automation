@@ -162,3 +162,14 @@ They are ALL going to pursue the same goal:
 
 >npx cypress open
 
+>yarn run cypress open
+
+___
+
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#miscellaneous)Miscellaneous:
+
+
+N/A.
+
+___
