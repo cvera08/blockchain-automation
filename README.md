@@ -178,3 +178,8 @@ ___
 
 
 * __[Carlos Vera](https://www.linkedin.com/in/carlos-vera-06a6b053)__
+
+    [@cvera08](https://github.com/cvera08) is the current creator and maintainer of the code and has written much of the
+    current code base, including complete refactors, bug fixing and general improvements to the existing code base.
+    He started out by authoring many, if not all, of the available e2e automation test cases, has been assisting with maintenance and adding
+    project documentation.
