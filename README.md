@@ -183,3 +183,7 @@ ___
     current code base, including complete refactors, bug fixing and general improvements to the existing code base.
     He started out by authoring many, if not all, of the available e2e automation test cases, has been assisting with maintenance and adding
     project documentation.
+
+___
+
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#other-contributors)Other Contributors:
