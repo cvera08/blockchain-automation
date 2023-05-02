@@ -190,3 +190,6 @@ ___
 
 
 N/A.
+
+___
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-licence)MIT licence:
