@@ -190,3 +190,8 @@ ___
 
 
 N/A.
+
+___
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-licence)MIT license:
+
+Copyright (c) 2023 Carlos Vera
