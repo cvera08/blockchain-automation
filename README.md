@@ -207,3 +207,7 @@ ___
 ## [![](https://i.ibb.co/2kHmnLX/image.png)](#change-log-)Change Log:
 
 Stable Builds:
+
+* Jan 21, 2023 -- v2.9.0
+  * Deploy & Run Transactions Menu.
+  * Delete First Contract.
