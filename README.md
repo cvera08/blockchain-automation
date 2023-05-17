@@ -211,3 +211,7 @@ Stable Builds:
 * Jan 21, 2023 -- v2.9.0
   * Deploy & Run Transactions Menu.
   * Delete First Contract.
+  * Add New Smart Contract.
+  * Create Hot Fudge Sauce Contract.
+  * Compile Contract.
+  * Deploy Contract.
