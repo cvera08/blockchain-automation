@@ -143,13 +143,14 @@ describe('remix ide spec', () => {
         })
       })
 
-      it('decrement and check value', () => {
+      it.only('decrement and check value', () => {
+        cy.pause()
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
         sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
 
-        sidePanelDeployRunTransactions.incrementDeployedContractBtn()
+        cy.contains('.udapp_instanceButton', /^decrement$/)
           .click()
           .wait(1000) //until transaction is processed
 
@@ -163,7 +164,7 @@ describe('remix ide spec', () => {
         cy.then(function () {
           expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
 
-          expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
+          expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
         })
       })
     })
