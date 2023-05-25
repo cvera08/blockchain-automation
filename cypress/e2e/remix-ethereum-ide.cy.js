@@ -162,7 +162,7 @@ describe('remix ide spec', () => {
           .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('updatedNumberHotFudgeSauce'))
 
         cy.then(function () {
-          expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
+          expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
 
           expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
         })
