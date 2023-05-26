@@ -23,7 +23,7 @@ ___
 - [Miscellaneous](#miscellaneous)
 - [Primary Authors](#primary-authors)
 - [Other Contributors](#other-contributors)
-- [MIT license](#mit-license)
+- [MIT licence](#mit-licence)
 - [Change Log](#change-log)
 
 ___
@@ -192,7 +192,7 @@ ___
 N/A.
 
 ___
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-license)MIT license:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-licence)MIT license:
 
 Copyright (c) 2023 Carlos Vera
 
@@ -215,3 +215,9 @@ Stable Builds:
   * Create Hot Fudge Sauce Contract.
   * Compile Contract.
   * Deploy Contract.
+
+* Jan 5, 2023 -- v2.0.0
+  * Deploy & Run Transactions.
+
+* Jan 3, 2023 -- v1.0.0
+  * Initial Cypress Project.
