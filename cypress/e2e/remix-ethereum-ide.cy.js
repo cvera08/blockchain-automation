@@ -143,12 +143,25 @@ describe('remix ide spec', () => {
         })
       })
 
-      it.only('decrement and check value', () => {
+      it.only('decrement and check value', () => { //>> IT DOESN'T WORK WITH WHILE LOOP
         cy.pause()
+        //we need to increment until is equal or mayor than one, otherwise if it is cero when decrements it won't happen too much
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
         sidePanelDeployRunTransactions.getUintText()
           .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
+
+        cy.then(function () {
+          cy.pause()
+        while(this.originalNumberHotFudgeSauce < 1){ //increment
+          cy.pause()
+          sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
+
+          sidePanelDeployRunTransactions.getDeployedContractBtn().click()
+          sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+          cy.pause()
+        }
+      })
 
         cy.contains('.udapp_instanceButton', /^decrement$/)
           .click()
