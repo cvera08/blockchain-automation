@@ -23,7 +23,7 @@ ___
 - [Miscellaneous](#miscellaneous)
 - [Primary Authors](#primary-authors)
 - [Other Contributors](#other-contributors)
-- [MIT licence](#mit-licence)
+- [MIT license](#mit-license)
 - [Change Log](#change-log)
 
 ___
@@ -192,7 +192,7 @@ ___
 N/A.
 
 ___
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-licence)MIT license:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-license)MIT license:
 
 Copyright (c) 2023 Carlos Vera
 
