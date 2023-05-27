@@ -143,7 +143,7 @@ describe('remix ide spec', () => {
         })
       })
 
-      it.only('decrement and check value', () => { //>> IT DOESN'T WORK WITH WHILE LOOP
+      it.only('decrement and check value', () => {
         cy.pause()
         //we need to increment until is equal or mayor than one, otherwise if it is cero when decrements it won't happen too much
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
@@ -152,14 +152,17 @@ describe('remix ide spec', () => {
           .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
 
         cy.then(function () {
+          cy.log('[🤖debug🤖]()', 1)
           cy.pause()
-        while(this.originalNumberHotFudgeSauce < 1){ //increment
+        if(this.originalNumberHotFudgeSauce === 0){ //increment
+          cy.log('[🤖debug🤖]()', 2)
           cy.pause()
           sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
 
           sidePanelDeployRunTransactions.getDeployedContractBtn().click()
           sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
           cy.pause()
+          cy.log('[🤖debug🤖]()', 3)
         }
       })
 
