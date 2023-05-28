@@ -166,6 +166,7 @@ describe('remix ide spec', () => {
         }
       })
 
+        cy.log('[🤖debug🤖]()', 4)
         cy.contains('.udapp_instanceButton', /^decrement$/)
           .click()
           .wait(1000) //until transaction is processed
