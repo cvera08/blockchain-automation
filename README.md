@@ -215,3 +215,9 @@ Stable Builds:
   * Create Hot Fudge Sauce Contract.
   * Compile Contract.
   * Deploy Contract.
+
+* Jan 5, 2023 -- v2.0.0
+  * Deploy & Run Transactions.
+
+* Jan 3, 2023 -- v1.0.0
+  * Initial Cypress Project.
