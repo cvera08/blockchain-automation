@@ -153,15 +153,12 @@ describe('remix ide spec', () => {
 
         cy.then(function () {
           cy.log('[🤖debug🤖]()', 1)
-          cy.pause()
         if(this.originalNumberHotFudgeSauce === 0){ //increment
           cy.log('[🤖debug🤖]()', 2)
-          cy.pause()
           sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
 
           sidePanelDeployRunTransactions.getDeployedContractBtn().click()
           sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
-          cy.pause()
           cy.log('[🤖debug🤖]()', 3)
         }
       })
