@@ -143,8 +143,7 @@ describe('remix ide spec', () => {
         })
       })
 
-      it.only('decrement and check value', () => {
-        cy.pause()
+      it('decrement and check value', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
         sidePanelDeployRunTransactions.getUintText()

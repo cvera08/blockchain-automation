@@ -8,11 +8,9 @@ export const openCloseDeployedContract = () => cy.get('.udapp_titleExpander')
 
 export const balanceDeployedContractLbl = () => cy.get('[data-id="instanceContractBal"] > label')
 
-export const decrementDeployedContractBtn = () => cy.contains('decrement')
-
 export const incrementDeployedContractBtn = () => cy.get('.udapp_instanceButton').contains(/^increment$/)
 
-//export const decrementDeployedContractBtn = () => cy.contains('.udapp_instanceButton', /^decrement$/)
+export const decrementDeployedContractBtn = () => cy.contains('.udapp_instanceButton', /^decrement$/)
 
 export const getDeployedContractBtn = () => cy.get('.udapp_instanceButton').contains(/^get$/) //exact match text
 
