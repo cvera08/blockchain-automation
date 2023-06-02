@@ -12,6 +12,8 @@ export const decrementDeployedContractBtn = () => cy.contains('decrement')
 
 export const incrementDeployedContractBtn = () => cy.get('.udapp_instanceButton').contains(/^increment$/)
 
+//export const decrementDeployedContractBtn = () => cy.contains('.udapp_instanceButton', /^decrement$/)
+
 export const getDeployedContractBtn = () => cy.get('.udapp_instanceButton').contains(/^get$/) //exact match text
 
 export const getUintText = () => getDeployedContractBtn()

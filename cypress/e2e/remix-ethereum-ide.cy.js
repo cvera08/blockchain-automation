@@ -145,29 +145,21 @@ describe('remix ide spec', () => {
 
       it.only('decrement and check value', () => {
         cy.pause()
-        //we need to increment until is equal or mayor than one, otherwise if it is cero when decrements it won't happen too much
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
         sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
+          .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
 
-        cy.then(function () {
-          cy.log('[🤖debug🤖]()', 1)
-          cy.pause()
-        if(this.originalNumberHotFudgeSauce === 0){ //increment
-          cy.log('[🤖debug🤖]()', 2)
-          cy.pause()
-          sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
+        cy.then(function () { //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
+          if (this.originalNumberHotFudgeSauce === 0) { //increment
+            sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
 
-          sidePanelDeployRunTransactions.getDeployedContractBtn().click()
-          sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
-          cy.pause()
-          cy.log('[🤖debug🤖]()', 3)
-        }
-      })
+            sidePanelDeployRunTransactions.getDeployedContractBtn().click().wait(500)
+            sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+          }
+        })
 
-        cy.log('[🤖debug🤖]()', 4)
-        cy.contains('.udapp_instanceButton', /^decrement$/)
+        sidePanelDeployRunTransactions.decrementDeployedContractBtn()
           .click()
           .wait(1000) //until transaction is processed
 
