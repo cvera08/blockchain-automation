@@ -146,10 +146,10 @@ describe('remix ide spec', () => {
       it('decrement and check value', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-        sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+        sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
 
-        cy.then(function () { //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
+        //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
+        cy.then(function () {
           if (this.originalNumberHotFudgeSauce === 0) { //increment
             sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
 
@@ -158,20 +158,14 @@ describe('remix ide spec', () => {
           }
         })
 
-        sidePanelDeployRunTransactions.decrementDeployedContractBtn()
-          .click()
-          .wait(1000) //until transaction is processed
+        sidePanelDeployRunTransactions.decrementDeployedContractBtn().click().wait(1000)
 
-        sidePanelDeployRunTransactions.getDeployedContractBtn()
-          .click()
-          .wait(1000)
+        sidePanelDeployRunTransactions.getDeployedContractBtn().click().wait(1000)
 
-        sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('updatedNumberHotFudgeSauce'))
+        sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('updatedNumberHotFudgeSauce'))
 
         cy.then(function () {
           expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
-
           expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
         })
       })
