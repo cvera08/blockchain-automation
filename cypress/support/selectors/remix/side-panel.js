@@ -10,7 +10,7 @@ export const validateFileExplorerTitle = () =>
 
 export const defaultWorkspaceDdl = () => cy.findByRole('button', { name: /default_workspace/i }, { timeout: 10000 });
 
-export const contractsFolder = () => cy.get('ul[data-id="treeViewUltreeViewMenu"] span[title="contracts"]', { timeout: 10000 })
+export const contractsFolder = () => cy.get('ul[data-id="treeViewUltreeViewMenu"] span[data-path="contracts"]', { timeout: 10000 })
 
 export const contractList = () => cy.get('ul[data-id="treeViewUltreeViewcontracts"]').then($elem => $elem.find('li')) //it needs to this in this way just in case the element does not exist (empty contract list)
 
