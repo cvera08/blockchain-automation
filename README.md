@@ -62,6 +62,7 @@ You can follow one of these links:
 | ------------------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
 | ***Windows, Linux, Mac***| https://nodejs.org/en/download/current                      |  _use the previous link depending on your OS_         |
 | ***Homebrew***      | https://www.atlassian.com/git/tutorials/install-git              | `brew install node`                                   |
+| ***NVM***      | https://github.com/nvm-sh/nvm                                         | `brew install nvm`                                   |
 
 </details>  
 
