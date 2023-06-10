@@ -64,6 +64,9 @@ You can follow one of these links:
 | ***Homebrew***      | https://www.atlassian.com/git/tutorials/install-git              | `brew install node`                                   |
 | ***NVM***      | https://github.com/nvm-sh/nvm                                         | `brew install nvm`                                   |
 
+Node recommended Version: **Latest**.  
+For Example, if you are using nvm, you can run:
+>nvm install node
 </details>  
 
 ___
