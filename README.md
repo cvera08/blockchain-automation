@@ -11,7 +11,7 @@ ___
 * 2\. item 
 -->
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#table-of-contents)Table of contents:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#table-of-contents)Table of contents
 - [Getting started](#getting-started)
    - [1. Install Git locally](#1-install-git-locally)
    - [2. Install Node locally](#2-install-node-locally)
@@ -28,7 +28,7 @@ ___
 
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#getting-started)Getting started:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#getting-started)Getting started
 
 <details>
 
@@ -71,7 +71,7 @@ For Example, if you are using nvm, you can run:
 
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#configure-this-project)Configure this project:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#configure-this-project)Configure this project
 Open your console/terminal and run this: 
 ```sh
 cd </your/desired/project/path/>
@@ -96,11 +96,11 @@ npm i
 ```
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#quick-run)Quick run:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#quick-run)Quick run
 [Please follow to this section ▼](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#run-tests-in-uigui-mode)Run tests in UI/GUI mode:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#run-tests-in-uigui-mode)Run tests in UI/GUI mode
 By using your console/terminal, make sure you are in the right path and run this:
 ```sh
 cd </your/desired/project/path>/blockchain-automation
@@ -138,7 +138,7 @@ _If you face some error you need to be sure you are in the base project folder (
 
 If it still does not work, try restarting all the involved programs (like Cypress/VS Code/etc), even your computer if it is necessary and start over again.
 ___
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)Run tests in Headless mode (with video output to see the recording):
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#run-tests-in-headless-mode-with-video-output-to-see-the-recording)Run tests in Headless mode (with video output to see the recording)
 ```sh
 cd </your/project/path>/blockchain-automation
 npx cypress run
@@ -152,7 +152,7 @@ You will get something like this:
 ![headless](https://user-images.githubusercontent.com/28716586/214966102-782521b2-f3cb-453e-8e00-ea5f76ea6c80.png)
 
 ___
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#different-ways-to-use-cypress)Different ways to use Cypress:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#different-ways-to-use-cypress)Different ways to use Cypress
 Make sure you already are located on your project path before trying to run one/many of the following commands.
 ```sh
 cd </your/project/path>/blockchain-automation
@@ -171,14 +171,14 @@ They are ALL going to pursue the same goal:
 ___
 
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#miscellaneous)Miscellaneous:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#miscellaneous)Miscellaneous
 
 
 N/A.
 
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#primary-authors)Primary Authors:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#primary-authors)Primary Authors
 
 
 * __[Carlos Vera](https://www.linkedin.com/in/carlos-vera-06a6b053)__
@@ -190,13 +190,13 @@ ___
 
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#other-contributors)Other Contributors:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#other-contributors)Other Contributors
 
 
 N/A.
 
 ___
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-license)MIT license:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#mit-license)MIT license
 
 Copyright (c) 2023 Carlos Vera
 
@@ -208,7 +208,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ___
 
-## [![](https://i.ibb.co/2kHmnLX/image.png)](#change-log-)Change Log:
+## [![](https://i.ibb.co/2kHmnLX/image.png)](#change-log-)Change Log
 
 Stable Builds:
 
