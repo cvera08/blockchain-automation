@@ -143,10 +143,14 @@ describe('remix ide spec', () => {
         })
       })
 
-      it('decrement and check value', () => {
+      it.only('decrement and check value', () => {
+        cy.pause()
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-        sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+        //sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+        cy.pause()
+        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
+        cy.pause()
 
         //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
         cy.then(function () {
