@@ -147,10 +147,7 @@ describe('remix ide spec', () => {
         cy.pause()
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-        //sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
-        cy.pause()
         sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
-        cy.pause()
 
         //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
         cy.then(function () {
@@ -158,7 +155,7 @@ describe('remix ide spec', () => {
             sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
 
             sidePanelDeployRunTransactions.getDeployedContractBtn().click().wait(500)
-            sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
+            sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
           }
         })
 
@@ -166,7 +163,7 @@ describe('remix ide spec', () => {
 
         sidePanelDeployRunTransactions.getDeployedContractBtn().click().wait(1000)
 
-        sidePanelDeployRunTransactions.getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('updatedNumberHotFudgeSauce'))
+        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
 
         cy.then(function () {
           expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
