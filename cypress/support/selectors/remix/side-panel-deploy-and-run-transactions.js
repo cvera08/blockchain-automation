@@ -22,6 +22,9 @@ export const getUintText = () => getDeployedContractBtn()
 
 export const qtyCupsDeployedContractBtn = () => cy.contains('qtyCups')
 
-//export const getC = () =>  getUintText().then($text => cy.wrap($text.replace('uint256: ', ''))
-//export const saveCurrentNumberHotFudgeSauce = (currentValueName) =>  getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce'))
-export const saveCurrentNumberHotFudgeSauce = (currentValueName) =>  getUintText().then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as(currentValueName))
+export const saveCurrentNumberHotFudgeSauce = (currentValueName) => getUintText()
+    .then(
+        $text => cy.wrap($text.replace('uint256: ', '')) //filtering string to get just the value
+            .then(parseInt)
+            .as(currentValueName)
+    )
