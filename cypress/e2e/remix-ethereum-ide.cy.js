@@ -122,8 +122,7 @@ describe('remix ide spec', () => {
       it('increment and check value', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
 
-        sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('originalNumberHotFudgeSauce')) //filtering string to get just the value
+        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce') 
 
         sidePanelDeployRunTransactions.incrementDeployedContractBtn()
           .click()
@@ -133,8 +132,7 @@ describe('remix ide spec', () => {
           .click()
           .wait(1000)
 
-        sidePanelDeployRunTransactions.getUintText()
-          .then($text => cy.wrap($text.replace('uint256: ', '')).then(parseInt).as('updatedNumberHotFudgeSauce'))
+        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
 
         cy.then(function () {
           expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
@@ -143,10 +141,8 @@ describe('remix ide spec', () => {
         })
       })
 
-      it.only('decrement and check value', () => {
-        cy.pause()
+      it('decrement and check value', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
-
         sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
 
         //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
