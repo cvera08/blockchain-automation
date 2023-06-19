@@ -145,15 +145,7 @@ describe('remix ide spec', () => {
         sidePanelDeployRunTransactions.getDeployedContractBtn().click()
         sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
 
-        //since negatives numbers are not allowed: we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
-        cy.then(function () {
-          if (this.originalNumberHotFudgeSauce === 0) { //increment
-            sidePanelDeployRunTransactions.incrementDeployedContractBtn().click().wait(1000)
-
-            sidePanelDeployRunTransactions.getDeployedContractBtn().click().wait(500)
-            sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
-          }
-        })
+        sidePanelDeployRunTransactions.incrementMoreThanZero() //if it is necessary
 
         sidePanelDeployRunTransactions.decrementDeployedContractBtn().click().wait(1000)
 
