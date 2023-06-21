@@ -21,3 +21,25 @@ export const getUintText = () => getDeployedContractBtn()
     .invoke('text')
 
 export const qtyCupsDeployedContractBtn = () => cy.contains('qtyCups')
+
+export const saveCurrentNumberHotFudgeSauce = (currentValueName) => getUintText()
+    .then(
+        $text => cy.wrap($text.replace('uint256: ', '')) //filtering string to get just the value
+            .then(parseInt)
+            .as(currentValueName)
+    )
+
+/**
+ * since negatives numbers are not allowed: 
+ *      we need to increment until is greater than zero, otherwise 0-1=0 and expects won't work
+ * @returns 
+ */
+export const incrementMoreThanZero = () => cy.then(
+    function () {
+        if (this.originalNumberHotFudgeSauce === 0) { //increment
+            incrementDeployedContractBtn().click().wait(1000)
+
+            getDeployedContractBtn().click().wait(500)
+            saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
+        }
+    })
