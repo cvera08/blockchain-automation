@@ -43,3 +43,25 @@ export const incrementMoreThanZero = () => cy.then(
             saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
         }
     })
+
+export const actionAndCheckValue = () => {
+    sidePanelDeployRunTransactions.getDeployedContractBtn().click()
+
+        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce') 
+
+        sidePanelDeployRunTransactions.incrementDeployedContractBtn()
+          .click()
+          .wait(1000) //until transaction is processed
+
+        sidePanelDeployRunTransactions.getDeployedContractBtn()
+          .click()
+          .wait(1000)
+
+        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
+
+        cy.then(function () {
+          expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
+
+          expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
+        })
+}
