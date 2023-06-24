@@ -120,43 +120,11 @@ describe('remix ide spec', () => {
       })
 
       it('increment and check value', () => {
-        sidePanelDeployRunTransactions.getDeployedContractBtn().click()
-
-        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce') 
-
-        sidePanelDeployRunTransactions.incrementDeployedContractBtn()
-          .click()
-          .wait(1000) //until transaction is processed
-
-        sidePanelDeployRunTransactions.getDeployedContractBtn()
-          .click()
-          .wait(1000)
-
-        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
-
-        cy.then(function () {
-          expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
-
-          expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
-        })
+        sidePanelDeployRunTransactions.actionAndCheckValue('increment')
       })
 
       it('decrement and check value', () => {
-        sidePanelDeployRunTransactions.getDeployedContractBtn().click()
-        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
-
-        sidePanelDeployRunTransactions.incrementMoreThanZero() //if it is necessary
-
-        sidePanelDeployRunTransactions.decrementDeployedContractBtn().click().wait(1000)
-
-        sidePanelDeployRunTransactions.getDeployedContractBtn().click().wait(1000)
-
-        sidePanelDeployRunTransactions.saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
-
-        cy.then(function () {
-          expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
-          expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
-        })
+        sidePanelDeployRunTransactions.actionAndCheckValue('decrement')
       })
     })
   })

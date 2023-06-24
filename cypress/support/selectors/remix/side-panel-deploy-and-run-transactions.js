@@ -43,3 +43,33 @@ export const incrementMoreThanZero = () => cy.then(
             saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
         }
     })
+
+export const actionAndCheckValue = (actionType) => {
+    getDeployedContractBtn().click()
+    saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
+
+    if (actionType === 'increment') {
+        incrementDeployedContractBtn()
+            .click()
+            .wait(1000) //until transaction is processed
+    } else { //then decrement
+        incrementMoreThanZero() //if it is necessary
+        decrementDeployedContractBtn().click().wait(1000)
+    }
+
+    getDeployedContractBtn()
+        .click()
+        .wait(1000)
+
+    saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
+
+    cy.then(function () {
+        if (actionType === 'increment') {
+            expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
+            expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
+        } else { //decrement
+            expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
+            expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
+        }
+    })
+}
