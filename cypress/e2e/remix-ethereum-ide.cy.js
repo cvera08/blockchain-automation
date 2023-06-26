@@ -120,7 +120,7 @@ describe('remix ide spec', () => {
       })
 
       it('increment and check value', () => {
-        sidePanelDeployRunTransactions.actionAndCheckValue()
+        sidePanelDeployRunTransactions.actionAndCheckValue('increment')
       })
 
       it('decrement and check value', () => {

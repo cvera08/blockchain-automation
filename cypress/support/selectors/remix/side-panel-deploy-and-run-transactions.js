@@ -44,14 +44,20 @@ export const incrementMoreThanZero = () => cy.then(
         }
     })
 
-export const actionAndCheckValue = () => {
+export const actionAndCheckValue = (actionType) => {
     getDeployedContractBtn().click()
-
     saveCurrentNumberHotFudgeSauce('originalNumberHotFudgeSauce')
 
-    incrementDeployedContractBtn()
+    if(actionType === 'increment'){
+        incrementDeployedContractBtn()
         .click()
         .wait(1000) //until transaction is processed
+    }else{
+        incrementMoreThanZero() //if it is necessary
+    }
+        
+
+    
 
     getDeployedContractBtn()
         .click()
@@ -60,8 +66,14 @@ export const actionAndCheckValue = () => {
     saveCurrentNumberHotFudgeSauce('updatedNumberHotFudgeSauce')
 
     cy.then(function () {
-        expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
+        if(actionType === 'increment'){
+            expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
 
-        expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
+            expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
+        } else {
+            expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
+            expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
+        }
+        
     })
 }
