@@ -54,6 +54,7 @@ export const actionAndCheckValue = (actionType) => {
         .wait(1000) //until transaction is processed
     }else{
         incrementMoreThanZero() //if it is necessary
+        decrementDeployedContractBtn().click().wait(1000)
     }
         
 
@@ -68,7 +69,6 @@ export const actionAndCheckValue = (actionType) => {
     cy.then(function () {
         if(actionType === 'increment'){
             expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
-
             expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
         } else {
             expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
