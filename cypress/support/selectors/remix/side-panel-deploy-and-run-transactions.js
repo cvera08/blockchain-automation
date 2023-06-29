@@ -52,13 +52,10 @@ export const actionAndCheckValue = (actionType) => {
         incrementDeployedContractBtn()
             .click()
             .wait(1000) //until transaction is processed
-    } else {
+    } else { //then decrement
         incrementMoreThanZero() //if it is necessary
         decrementDeployedContractBtn().click().wait(1000)
     }
-
-
-
 
     getDeployedContractBtn()
         .click()
@@ -70,10 +67,9 @@ export const actionAndCheckValue = (actionType) => {
         if (actionType === 'increment') {
             expect(this.updatedNumberHotFudgeSauce).to.be.greaterThan(this.originalNumberHotFudgeSauce)
             expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce + 1)
-        } else {
+        } else { //decrement
             expect(this.updatedNumberHotFudgeSauce).to.be.lessThan(this.originalNumberHotFudgeSauce)
             expect(this.updatedNumberHotFudgeSauce).to.equal(this.originalNumberHotFudgeSauce - 1)
         }
-
     })
 }
